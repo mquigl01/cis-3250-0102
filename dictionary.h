@@ -1,3 +1,4 @@
+/* Last modified Oct 1st by MacKenzie Quigley*/
 #ifndef DICTIONARY_H
 #define DICTIONARY_H
 
@@ -10,7 +11,7 @@ typedef struct d_node {
     struct d_node *next;
 }DNode;
 
-char * copystr (const char *);
+char * copystr (const char *character);
 unsigned hash(const char *s);
 
 DNode * lookup (DNode ** dictionary, int hash_size, const char *key);
