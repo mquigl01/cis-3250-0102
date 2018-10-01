@@ -2,9 +2,9 @@
 #include <string.h>
 #include <ctype.h>
 #include "dictionary.h"
-#include "board_generator.h"
-#include "word_checker.h"
-#include "scoreboard.h"
+#include "boardGenerator.h"
+#include "wordChecker.h"
+#include "scoreBoard.h"
 
 #define MAX_LINE 100
 
@@ -68,7 +68,7 @@ int main (int argc, char ** argv) {
 	FILE *input_FP;
 	char line [MAX_LINE];
 	char *file_name;
- 	
+
  	const char * dict_name = "EnglishWords.txt";
 	DNode* check_english;
 	DNode* check_submitted;
@@ -85,7 +85,7 @@ int main (int argc, char ** argv) {
 	RolledDice *game_board[4];
 
 	FILE *output_FP;
-	char read_line[MAX_LINE]; 
+	char read_line[MAX_LINE];
 
 
 	if(!(input_FP = fopen ( dict_name , "r" )))    {
@@ -96,7 +96,7 @@ int main (int argc, char ** argv) {
 	while( fgets (line, MAX_LINE, input_FP)!=NULL ) {
 		line[strcspn(line, "\r\n")] = '\0';  //trim new line characters
 		insert (english_dictionary, BIG_HASH_SIZE, convert_to_upper2(&line));
-	}	
+	}
 	fclose (input_FP);
 
 
@@ -150,18 +150,18 @@ int main (int argc, char ** argv) {
 
 			print_game_board(game_board);
 
-			check_english = lookup (english_dictionary, BIG_HASH_SIZE, input_word);			
-			
+			check_english = lookup (english_dictionary, BIG_HASH_SIZE, input_word);
+
 			if (check_english != NULL) {
 				check_submitted = lookup (guessed_words, SMALL_HASH_SIZE, input_word);
-				
+
 				if (check_submitted == NULL) {
 					if(strlen(input_word) > 2){
 						if(word_checker(game_board, input_word)){
 							insert (guessed_words, SMALL_HASH_SIZE, input_word);
 							increment_total_score(&current_score, input_word);
 							fprintf (stdout, "Correct! You current score is now: %d \n", current_score);
-					
+
 						}else{
 							fprintf (stderr, "The submitted word: \'%s\'' does not abide game rules. Try again!\n", original_input_word);
 						}
@@ -220,38 +220,38 @@ int main (int argc, char ** argv) {
 								fprintf(stdout, "%c \t", test_board[i][j] );
 							}else {
 								fprintf(stdout, "%c \n", test_board[i][j] );
-							
+
 							}
 						}
-					
+
 					}
-			
+
 			}else if (file_line_counter >= 2){
 				for (char *p = strtok(test_line,","); p != NULL; p = strtok(NULL, ",")){
 					check_english = lookup (english_dictionary, BIG_HASH_SIZE, convert_to_upper(&p));
-						
+
 					if (check_english != NULL) {
 						check_submitted = lookup (guessed_words, SMALL_HASH_SIZE, p);
-						
+
 						if (check_submitted == NULL) {
 							if(test_word_checker(test_board, p)){
 								insert (guessed_words, SMALL_HASH_SIZE, p);
 								increment_total_score(&test_points, p);
 								fprintf(stdout,"Correct! You total score is now: %d \n",test_points );
-						
+
 							}else{
-								if(begin == 0){								
+								if(begin == 0){
 									fprintf(output_FP, "%s", p );
 									begin++;
 								}else{
 									fprintf(output_FP, ",%s", p );
 								}
-								
-								fprintf(stderr,"The submitted word: \'%s\'' does not abide game rules. Try again!\n", p);								
+
+								fprintf(stderr,"The submitted word: \'%s\'' does not abide game rules. Try again!\n", p);
 							}
 
 						}else{
-								if(begin == 0){								
+								if(begin == 0){
 									fprintf(output_FP, "%s", p );
 									begin++;
 								}else{
@@ -260,9 +260,9 @@ int main (int argc, char ** argv) {
 							fprintf(stderr,"You have already submitted the word: \'%s\'' Try again!\n", p);
 						}
 
-			
+
 				 	}else{
-						if(begin == 0){								
+						if(begin == 0){
 							fprintf(output_FP, "%s", p );
 							begin++;
 						}else{
