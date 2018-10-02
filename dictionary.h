@@ -6,18 +6,18 @@
 #define BIG_HASH_SIZE 20000
 #define SMALL_HASH_SIZE 100
 
-typedef struct d_node {
+typedef struct node {
 	char* key;
-    struct d_node *next;
-}DNode;
+  struct node *next;
+} dictionaryStruct;
 
-char * copystr (const char *character);
-unsigned hash(const char *s);
+char * copyString ( const char *string );
+unsigned formHashValue ( const char *string );
 
-DNode * lookup (DNode ** dictionary, int hash_size, const char *key);
+dictionaryStruct * lookupWord ( dictionaryStruct ** dictionary, int hashSize, const char *key );
 
-DNode * insert (DNode ** dictionary, int hash_size, const char * key);
+dictionaryStruct * insertWord ( dictionaryStruct ** dictionary, int hashSize, const char * key );
 
-void free_dictionary (DNode ** dictionary, int hash_size);
+void freeDictionary ( dictionaryStruct ** dictionary, int hashSize );
 
 #endif

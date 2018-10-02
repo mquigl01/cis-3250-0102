@@ -70,10 +70,10 @@ int main (int argc, char ** argv) {
 	char *file_name;
 
  	const char * dict_name = "EnglishWords.txt";
-	DNode* check_english;
-	DNode* check_submitted;
-	static DNode* english_dictionary [BIG_HASH_SIZE];
-	static DNode* guessed_words [SMALL_HASH_SIZE];
+	dictionaryStruct* check_english;
+	dictionaryStruct* check_submitted;
+	static dictionaryStruct* english_dictionary [BIG_HASH_SIZE];
+	static dictionaryStruct* guessed_words [SMALL_HASH_SIZE];
 
 	int current_score = 0;
 	int turn_count = 0;
@@ -95,7 +95,7 @@ int main (int argc, char ** argv) {
 
 	while( fgets (line, MAX_LINE, input_FP)!=NULL ) {
 		line[strcspn(line, "\r\n")] = '\0';  //trim new line characters
-		insert (english_dictionary, BIG_HASH_SIZE, convert_to_upper2(&line));
+		insertWord(english_dictionary, BIG_HASH_SIZE, convert_to_upper2(&line));
 	}
 	fclose (input_FP);
 
@@ -150,15 +150,15 @@ int main (int argc, char ** argv) {
 
 			print_game_board(game_board);
 
-			check_english = lookup (english_dictionary, BIG_HASH_SIZE, input_word);
+			check_english = lookupWord(english_dictionary, BIG_HASH_SIZE, input_word);
 
 			if (check_english != NULL) {
-				check_submitted = lookup (guessed_words, SMALL_HASH_SIZE, input_word);
+				check_submitted = lookupWord(guessed_words, SMALL_HASH_SIZE, input_word);
 
 				if (check_submitted == NULL) {
 					if(strlen(input_word) > 2){
 						if(word_checker(game_board, input_word)){
-							insert (guessed_words, SMALL_HASH_SIZE, input_word);
+							insertWord(guessed_words, SMALL_HASH_SIZE, input_word);
 							increment_total_score(&current_score, input_word);
 							fprintf (stdout, "Correct! You current score is now: %d \n", current_score);
 
@@ -195,7 +195,7 @@ int main (int argc, char ** argv) {
 		char **test_board;
 		int file_line_counter = 1;
 		int i,j;
-		DNode* test_result;
+		dictionaryStruct* test_result;
 		int begin = 0;
 
 		// (1) read first line which is the board
@@ -228,14 +228,14 @@ int main (int argc, char ** argv) {
 
 			}else if (file_line_counter >= 2){
 				for (char *p = strtok(test_line,","); p != NULL; p = strtok(NULL, ",")){
-					check_english = lookup (english_dictionary, BIG_HASH_SIZE, convert_to_upper(&p));
+					check_english = lookupWord(english_dictionary, BIG_HASH_SIZE, convert_to_upper(&p));
 
 					if (check_english != NULL) {
-						check_submitted = lookup (guessed_words, SMALL_HASH_SIZE, p);
+						check_submitted = lookupWord(guessed_words, SMALL_HASH_SIZE, p);
 
 						if (check_submitted == NULL) {
 							if(test_word_checker(test_board, p)){
-								insert (guessed_words, SMALL_HASH_SIZE, p);
+								insertWord(guessed_words, SMALL_HASH_SIZE, p);
 								increment_total_score(&test_points, p);
 								fprintf(stdout,"Correct! You total score is now: %d \n",test_points );
 
@@ -290,8 +290,8 @@ int main (int argc, char ** argv) {
 
 	}
 
-	free_dictionary(english_dictionary, BIG_HASH_SIZE);
-	free_dictionary(guessed_words, SMALL_HASH_SIZE);
+	freeDictionary(english_dictionary, BIG_HASH_SIZE);
+	freeDictionary(guessed_words, SMALL_HASH_SIZE);
 
 	return 0;
 }
