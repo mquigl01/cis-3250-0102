@@ -261,10 +261,3 @@ void updateNodeWithName (User *head, char* name, int currentScore) {
 		userPtr -> totalScore += currentScore;
 	}
 }
-
-int main()
-{
-    
-    return 0;
-    
-}

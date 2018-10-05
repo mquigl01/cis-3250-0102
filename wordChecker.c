@@ -56,12 +56,9 @@ int abidesRules(  int i, int j, char *word, struct rolledDice** gameBoard, int s
   return 0;
 }
 
-/* Revised by Josh Aidelman and Jaden Walt on October 4th at 4:17 PM */
+/* Revised by Josh Aidelman and Jaden Walt on October 5th at 2:53 PM */
 int wordChecker( struct rolledDice **gameBoard, char *word ){
 
-  int row;
-  int letter;
-  int col;
   int m;
   int n;
   int **visited;
@@ -186,9 +183,7 @@ int testAbidesRules( int i, int j, char *word, char **gameBoard, int subLen, int
 
 /* Revised by Josh Aidelman and Jaden Walt on October 4th at 4:28 PM */
 int testWordChecker( char **boggle, char *word ){
-  int row;
-  int letter;
-  int col;
+
   int m;
   int n;
   int **visited;
