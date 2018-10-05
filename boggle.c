@@ -21,7 +21,7 @@ void free_and_reset_board(struct rolled_dice** game_board,
 	for (int i = 0; i < 4; i++) {
 		free(game_board[i]);
 	}
-	roll_dice(game_board, input_array_of_dice);
+	rollDice(game_board, input_array_of_dice);
 }
 
 
@@ -107,7 +107,7 @@ int main (int argc, char ** argv) {
 
 		initialize_preset_dice(global_dice);
 
-		roll_dice(game_board, global_dice);
+		rollDice(game_board, global_dice);
 
 		while (turn_count >= 0) {
 			strcpy(original_input_word, input_word);
@@ -148,7 +148,7 @@ int main (int argc, char ** argv) {
 				continue;
 			}
 
-			print_game_board(game_board);
+			printGameBoard(game_board);
 
 			check_english = lookupWord(english_dictionary, BIG_HASH_SIZE, input_word);
 
@@ -211,7 +211,7 @@ int main (int argc, char ** argv) {
 			test_line[strcspn(test_line, "\r\n")] = '\0';  //trim new line characters
 
 			if(file_line_counter == 1){
-					convert_to_board(test_line, &test_board);
+					convertToBoard(test_line, &test_board);
 
 					// this can be removed, its just for testing purposes
 					for (i = 0; i < 4; i++) {
