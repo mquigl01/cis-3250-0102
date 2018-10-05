@@ -233,13 +233,13 @@ int main ( int argc, char ** argv ) {
 
 			}else if ( fileLineCounter >= 2 ){
 				for ( char *p = strtok( testLine,"," ); p != NULL; p = strtok( NULL, "," ) ){
-					checkEnglish = lookupWord( englishDictionary, BIG_HASH_SIZE, convert_to_upper( &p ) );
+					checkEnglish = lookupWord( englishDictionary, BIG_HASH_SIZE, convertToUpper( &p ) );
 
 					if ( checkEnglish != NULL ) {
 						checkSubmitted = lookupWord( guessedWords, SMALL_HASH_SIZE, p );
 
 						if ( checkSubmitted == NULL ) {
-							if( test_word_checker( testBoard, p ) ){
+							if( testWordChecker( testBoard, p ) ){
 								insertWord( guessedWords, SMALL_HASH_SIZE, p );
 								incrementTotalScore( &testPoints, p );
 								fprintf( stdout,"Correct! You total score is now: %d \n",testPoints );
