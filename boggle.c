@@ -13,13 +13,16 @@
  - not sure if I need to change function names to camel case
  - set up board,
  - set up dictionary,
+
+  - edited by Josh Aidelman, Oct 5th, 2:58PM
+	- changed function names to camel case
  **/
 
-void increment_total_score( int *userScore, char *word );
+void incrementTotalScore( int *userScore, char *word );
 
-void free_and_reset_board( struct rolledDice** gameBoard, 
+void freeAndResetBoard( struct rolledDice** gameBoard,
 	struct presetDice* inputArrayOfDice ) {
-	int numPlayers = 4;	
+	int numPlayers = 4;
 	for ( int count = 0; count < numPlayers; count++ ) {
 		free( gameBoard[count] );
 	}
@@ -27,7 +30,7 @@ void free_and_reset_board( struct rolledDice** gameBoard,
 }
 
 
-char *convert_to_upper( char **upper ){
+char *convertToUpper( char **upper ){
 	char *upperDeref = *upper;
 
 	for( int count = 0; upperDeref[count]; count++ ){
@@ -36,7 +39,7 @@ char *convert_to_upper( char **upper ){
 	return upperDeref;
 }
 
-char *convert_to_upper2( char ( *upper )[] ){
+char *convertToUpper2( char ( *upper )[] ){
 	char *upperDeref = *upper;
 
 	for( int count = 0; upperDeref[count]; count++ ){
@@ -45,7 +48,7 @@ char *convert_to_upper2( char ( *upper )[] ){
 	return upperDeref;
 }
 
-void increment_total_score( int *userScore, char *word ){
+void incrementTotalScore( int *userScore, char *word ){
 	int wordLen = strlen( word );
 	fprintf( stdout, "wordLen: %d\n",wordLen );
 	if( wordLen == 3 || wordLen == 4 ){
@@ -64,7 +67,7 @@ void increment_total_score( int *userScore, char *word ){
 
 int main ( int argc, char ** argv ) {
 	int count, points = 0, testPoints = 0, invalidSize = 0;
-	int numPlayers = 4;	
+	int numPlayers = 4;
 	char inputWord[100];
 	char originalInputWord[100];
 
@@ -98,7 +101,7 @@ int main ( int argc, char ** argv ) {
 
 	while( fgets ( line, MAX_LINE, inputFP )!=NULL ) {
 		line[strcspn( line, "\r\n" )] = '\0';  //trim new line characters
-		insertWord( englishDictionary, BIG_HASH_SIZE, convert_to_upper2( &line ) );
+		insertWord( englishDictionary, BIG_HASH_SIZE, convertToUpper2( &line ) );
 	}
 	fclose ( inputFP );
 
@@ -108,44 +111,44 @@ int main ( int argc, char ** argv ) {
 
 		system( "clear" );
 
-		initialize_preset_dice( globalDice );
+		initializePresetDice( globalDice );
 
 		rollDice( gameBoard, globalDice );
 
 		while ( turnCount >= 0 ) {
 			strcpy( originalInputWord, inputWord );
 
-			convert_to_upper2( &inputWord );
+			convertToUpper2( &inputWord );
 
 			User *thisUser;
 			char inputName[100];
 
 			if ( strcmp( originalInputWord, "q" ) == 0 ) {
 				// "q" is the input, print scoreboard and exit game
-				print_scoreboard( head );
+				printScoreboard( head );
 				break;
 			}
 			// "n" is the input, adds user to/changes user in linked list and
 			// resets game
 			if ( strcmp( originalInputWord, "n" ) == 0 ) {
 
-				print_scoreboard(head);
+				printScoreboard(head);
 				fprintf( stdout, "Your current score: %d \n", currentScore );
 				fprintf( stdout, "What is your name? \n" );
 				scanf( "%s", inputName );
 
-				if ( user_is_in_list( head, inputName ) == 0 ){
-					add_node( head, inputName, currentScore );
+				if ( userIsInList( head, inputName ) == 0 ){
+					addNode( head, inputName, currentScore );
 				}
 				else {
-					update_node_with_name( head, inputName, currentScore );
+					updateNodeWithName( head, inputName, currentScore );
 				}
 
 				currentScore = 0;
 
 				strcpy( inputWord, "" );
 
-				free_and_reset_board( gameBoard, globalDice );
+				freeAndResetBoard( gameBoard, globalDice );
 				turnCount = 0;
 				system( "clear" );
 				continue;
@@ -160,9 +163,9 @@ int main ( int argc, char ** argv ) {
 
 				if ( checkSubmitted == NULL ) {
 					if( strlen( inputWord ) > 2 ){
-						if( word_checker( gameBoard, inputWord ) ){
+						if( wordChecker( gameBoard, inputWord ) ){
 							insertWord( guessedWords, SMALL_HASH_SIZE, inputWord );
-							increment_total_score( &currentScore, inputWord );
+							incrementTotalScore( &currentScore, inputWord );
 							fprintf ( stdout, "Correct! You current score is now: %d \n", currentScore );
 
 						}else{
@@ -187,7 +190,7 @@ int main ( int argc, char ** argv ) {
 		for ( int count = 0; count < numPlayers; count++ ) {
 			free( gameBoard[count] );
 		}
-		free_all( head );
+		freeAll( head );
 
 	}else if ( argc == 2 ){
 		fileName =  argv[1];
@@ -238,7 +241,7 @@ int main ( int argc, char ** argv ) {
 						if ( checkSubmitted == NULL ) {
 							if( test_word_checker( testBoard, p ) ){
 								insertWord( guessedWords, SMALL_HASH_SIZE, p );
-								increment_total_score( &testPoints, p ); 
+								incrementTotalScore( &testPoints, p );
 								fprintf( stdout,"Correct! You total score is now: %d \n",testPoints );
 
 							}else{
