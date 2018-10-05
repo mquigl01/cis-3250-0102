@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 scoreBoard: scoreBoard.o
 	gcc -Wall -pedantic -std=c99 scoreBoard.o -o scoreBoard
 
@@ -6,3 +7,5 @@ scoreBoard.o: scoreBoard.c scoreBoard.h
 
 clean:
 	rm -i ./*.o
+=======
+>>>>>>> 13a0a4250c6891e533be6ec743cbc5500798a102

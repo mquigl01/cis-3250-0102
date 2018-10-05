@@ -2,15 +2,15 @@
 #include "boardGenerator.h"
 #include <stdlib.h>
 
+/* Revised by Josh Aidelman and Jaden Walt on October 4th at 4:00 PM */
+int wordChecker( struct rolled_dice **game_board, char *word );
+int abidesRules( int i, int j, char *word, struct rolled_dice** gameBoard, int subLen, int **visited );
+char getLetter( int i, int j, struct rolled_Dice **gameBoard );
 
-int word_checker(struct rolled_dice **game_board, char *word);
-int abides_rules(int i, int j, char *word, struct rolled_dice** game_board, int sub_len, int **visited);
-char get_letter(int i, int j, struct rolled_dice **game_board);
+int testWordChecker( char **boggle, char *word );
+int testAbidesRules( int i, int j, char *word, char **gameBoard, int subLen, int **visited );
+char testGetLetter( int i, int j, char **boggle );
 
-int test_word_checker(char **boggle, char *word);
-int test_abides_rules(int i, int j, char *word, char **game_board, int sub_len, int **visited);
-char test_get_letter(int i, int j, char **boggle);
-
-int hc_word_checker(char boggle[][4], char *word);
-char hc_get_letter(int i, int j, char boggle[][4]);
-int hc_abides_rules(int i, int j, char *word, char boggle[][4], int sub_len, int **visited);
+int hcWordChecker( char boggle[][4], char *word );
+char hcGetLetter( int i, int j, char boggle[][4] );
+int hcAbidesRules( int i, int j, char *word, char boggle[][4], int subLen, int **visited );
