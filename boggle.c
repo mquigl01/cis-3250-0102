@@ -66,7 +66,7 @@ void incrementTotalScore( int *userScore, char *word ){
 
 
 int main ( int argc, char ** argv ) {
-	int count, points = 0, testPoints = 0, invalidSize = 0;
+	int testPoints = 0;
 	int numPlayers = 4;
 	char inputWord[100];
 	char originalInputWord[100];
@@ -91,8 +91,6 @@ int main ( int argc, char ** argv ) {
 	RolledDice *gameBoard[4];
 
 	FILE *outputFP;
-	char readLine[MAX_LINE];
-
 
 	if( !( inputFP = fopen ( DICT_NAME , "r" ) ) )    {
 		fprintf( stderr,"Could not open file \"%s\" for reading dictionary words\n", DICT_NAME );
@@ -120,7 +118,6 @@ int main ( int argc, char ** argv ) {
 
 			convertToUpper2( &inputWord );
 
-			User *thisUser;
 			char inputName[100];
 
 			if ( strcmp( originalInputWord, "q" ) == 0 ) {
@@ -197,11 +194,9 @@ int main ( int argc, char ** argv ) {
 		fprintf( stdout, "playing in test mode with file: %s\n", fileName );
 		FILE *testFileFP;
 		char testLine [MAX_LINE];
-		char *testWords;
 		char **testBoard;
 		int fileLineCounter = 1;
 		int count,testCounter;
-		dictionaryStruct* testResult;
 		int begin = 0;
 
 		// (1) read first line which is the board

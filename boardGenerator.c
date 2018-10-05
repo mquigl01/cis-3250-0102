@@ -33,7 +33,7 @@ void rollNoShuffleDice(struct rolledDice* gameDice, struct presetDice* inputArra
 	srand(time(NULL));
 
 	for ( int i = 0; i < 16; i++ ) {
-		
+
 		int r = rand()%6;
 		gameDice[i].character = inputArrayOfDice[i].configurations[r];
 
@@ -144,7 +144,6 @@ void printBoard(char boggle[][4]) {
 /** Converts board from a string version to 2D array. Used in test mode**/
 void convertToBoard(char *letters, char ***board){
 	// allocate space for boggle board on heap in order to access it in main.
-	char *word;
 	int i, j, t = 0;
 
 	*board = malloc(sizeof(char * ) * 4);
