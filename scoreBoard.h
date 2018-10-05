@@ -4,31 +4,33 @@
 #include <stdlib.h>
 
 typedef struct user{
+    
 	char name[100];
-	int max_score;
-	int total_games;
-	int total_score;
+	int maxScore;
+	int totalGames;
+	int totalScore;
 	struct user *next;
 
 } User;
 
-User* find_user_with_name(User* head, char* name_to_find);
+User* findUserWithName ( User* head, char* nameToFind );
 
-User* get_user_at_index(User* head, int index);
+User* getUserAtIndex ( User* head, int index );
 
-int get_index_of_user_with_name(User* head, char* name_to_find);
+int getIndexOfUserWithName ( User* head, char* nameToFind );
 
-int get_length(User* head);
+int getLength ( User* head );
 
-User* get_last_node(User *head);
+User* getLastNode ( User *head );
 
-void print_scoreboard(User *head);
+void printScoreBoard ( User *head );
 
-void free_all(User* head);
-void add_node(User *head, char* name, int max_score);
+void freeAll ( User* head );
 
-int user_is_in_list(User* head, char* name_to_find);
+void addNode ( User *head, char* name, int maxScore );
 
-void update_node_with_name(User *head, char* name, int current_score);
+int userIsInList ( User* head, char* nameToFind );
+
+void updateNodeWithName ( User *head, char* name, int currentScore );
 
 #endif
