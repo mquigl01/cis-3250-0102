@@ -7,51 +7,59 @@
 //form hash value for string s
 //this produces a starting value in the dictionary array
 /* Last modified Oct 1st by MacKenzie Quigley*/
-unsigned hash( const char *s ) {
-	unsigned hashval;
-	for (hashval = 0; *s != '\0'; s++)
-		hashval = *s + 31 * hashval;
-	return hashval ;
+unsigned formHashValue ( const char *string ) {
+	unsigned hashValue = 0;
+
+	while ( *string != '\0' ) {
+		hashValue = *string + 31 * hashValue;
+		string++;
+	}
+
+	return hashValue;
 }
 
+/* Checks to see if the word is in the dictionary */
 /* Last modified Oct 1st by MacKenzie Quigley*/
-DNode * lookup ( DNode ** dictionary, int hash_size, const char *key ) {
-	DNode * np;
-	unsigned int hashval = hash(key);
-	for ( np = dictionary [hashval % hash_size]; np !=NULL; np = np->next ) {
-		if (strcmp (key, np->key) == 0)
-		return np;
+dictionaryStruct * lookupWord ( dictionaryStruct ** dictionary, int hashSize, const char *key ) {
+	dictionaryStruct * np;
+	unsigned int hashValue = formHashValue(key);
+
+	for ( np = dictionary[hashValue % hashSize]; np != NULL; np = np->next ) {
+		if ( strcmp(key, np->key) == 0 ) {
+			return np;
+		}
 	}
+
 	return NULL;
 }
 
 /* Last modified Oct 1st by MacKenzie Quigley*/
-DNode * insert ( DNode ** dictionary, int hash_size,  const char * key ) {
-	unsigned int hashval;
-	DNode *np;
+dictionaryStruct * insertWord ( dictionaryStruct **dictionary, int hashSize,  const char *key ) {
+	unsigned int hashValue;
+	dictionaryStruct *np;
 
-	if ( (np = lookup (dictionary, hash_size, key)) == NULL ) {
-		np = (DNode *) malloc (sizeof (*np));
+	if ( (np = lookupWord(dictionary, hashSize, key)) == NULL ) {
+		np = (dictionaryStruct *) malloc (sizeof(*np));
 
-		if ( np == NULL || (np->key = copystr (key)) == NULL ) {
+		if ( np == NULL || (np->key = copyString(key)) == NULL ) {
 			return NULL;
 		}
-		hashval = hash (key) % hash_size;
+		hashValue = formHashValue(key) % hashSize;
 
-		np->next = dictionary [hashval];
-		dictionary[hashval] = np;
+		np->next = dictionary [hashValue];
+		dictionary[hashValue] = np;
 	}
 	return np;
 }
 
 /* Last modified Oct 1st by MacKenzie Quigley*/
-void free_dictionary ( DNode ** dictionary, int hash_size ) {
-	for ( int sizeIndex = 0; sizeIndex < hash_size; sizeIndex++ ) {
+void freeDictionary ( dictionaryStruct ** dictionary, int hashSize ) {
+	for ( int sizeIndex = 0; sizeIndex < hashSize; sizeIndex++ ) {
 		if ( dictionary[sizeIndex] != NULL ) {
-			DNode *head = dictionary[sizeIndex];
-			DNode *current = head;
+			dictionaryStruct *head = dictionary[sizeIndex];
+			dictionaryStruct *current = head;
 			while ( current != NULL ) {
-				DNode * temp = current;
+				dictionaryStruct * temp = current;
 				current = current->next;
 				free(temp);
 			}
@@ -62,13 +70,13 @@ void free_dictionary ( DNode ** dictionary, int hash_size ) {
 
 /* make a duplicate of s */
 /* Last modified Oct 1st by MacKenzie Quigley*/
-char *copystr ( const char *character ) {
+char *copyString ( const char *string ) {
 	char *duplicate;
-	int length = strlen(character);
+	int length = strlen(string);
 
 	duplicate = (char *) malloc(length + 1); /* +1 for ?\0? */
 	if (duplicate != NULL) {
-		strncpy(duplicate, character, length);
+		strncpy(duplicate, string, length);
 
 	}
 	duplicate[length] = '\0';
