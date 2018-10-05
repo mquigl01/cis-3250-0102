@@ -19,8 +19,8 @@ void increment_total_score( int *userScore, char *word );
 
 void free_and_reset_board( struct rolledDice** gameBoard, 
 	struct presetDice* inputArrayOfDice ) {
-
-	for ( int count = 0; count < 4; count++ ) {
+	int numPlayers = 4;	
+	for ( int count = 0; count < numPlayers; count++ ) {
 		free( gameBoard[count] );
 	}
 	rollDice( gameBoard, inputArrayOfDice );
@@ -31,7 +31,7 @@ char *convert_to_upper( char **upper ){
 	char *upperDeref = *upper;
 
 	for( int count = 0; upperDeref[count]; count++ ){
-	  upperDeref[count] = toupper( upperDeref[count] );
+		upperDeref[count] = toupper( upperDeref[count] );
 	}
 	return upperDeref;
 }
@@ -40,7 +40,7 @@ char *convert_to_upper2( char ( *upper )[] ){
 	char *upperDeref = *upper;
 
 	for( int count = 0; upperDeref[count]; count++ ){
-	  upperDeref[count] = toupper( upperDeref[count] );
+		upperDeref[count] = toupper( upperDeref[count] );
 	}
 	return upperDeref;
 }
@@ -64,6 +64,7 @@ void increment_total_score( int *userScore, char *word ){
 
 int main ( int argc, char ** argv ) {
 	int count, points = 0, testPoints = 0, invalidSize = 0;
+	int numPlayers = 4;	
 	char inputWord[100];
 	char originalInputWord[100];
 
@@ -91,7 +92,7 @@ int main ( int argc, char ** argv ) {
 
 
 	if( !( inputFP = fopen ( DICT_NAME , "r" ) ) )    {
-        fprintf( stderr,"Could not open file \"%s\" for reading dictionary words\n", DICT_NAME );
+		fprintf( stderr,"Could not open file \"%s\" for reading dictionary words\n", DICT_NAME );
         return 1;
     }
 
@@ -183,13 +184,13 @@ int main ( int argc, char ** argv ) {
 	        turnCount++;
 	        system( "clear" );
    		}
-		for ( int count = 0; count < 4; count++ ) {
+		for ( int count = 0; count < numPlayers; count++ ) {
 			free( gameBoard[count] );
 		}
 		free_all( head );
 
 	}else if ( argc == 2 ){
-				fileName =  argv[1];
+		fileName =  argv[1];
 		fprintf( stdout, "playing in test mode with file: %s\n", fileName );
 		FILE *testFileFP;
 		char testLine [MAX_LINE];
@@ -205,7 +206,7 @@ int main ( int argc, char ** argv ) {
 		    fprintf( stderr,"Could not open test file \'%s\' for reading\n", fileName );
 		    return 1;
 		}else if( !( outputFP = fopen( "result.txt", "w" ) ) ){
-	   	 fprintf( stderr,"Could not open result file \'%s\' for writing\n", "result.txt" );
+			fprintf( stderr,"Could not open result file \'%s\' for writing\n", "result.txt" );
 		    return 1;
 		}
 
@@ -213,20 +214,19 @@ int main ( int argc, char ** argv ) {
 			testLine[strcspn( testLine, "\r\n" )] = '\0';  //trim new line characters
 
 			if( fileLineCounter == 1 ){
-					convertToBoard( testLine, &testBoard );
+				convertToBoard( testLine, &testBoard );
 
-					// this can be removed, its just for testing purposes
-					for ( count = 0; count < 4; count++ ) {
-						for ( testCounter = 0; testCounter < 4; testCounter++ ) {
-							if ( testCounter != 3 ) {
-								fprintf( stdout, "%c \t", testBoard[count][testCounter] );
-							}else {
-								fprintf( stdout, "%c \n", testBoard[count][testCounter] );
-
-							}
+				// this can be removed, its just for testing purposes
+				for ( count = 0; count < numPlayers; count++ ) {
+					for ( testCounter = 0; testCounter < numPlayers; testCounter++ ) {
+						if ( testCounter != 3 ) {
+							fprintf( stdout, "%c \t", testBoard[count][testCounter] );
+						}else {
+							fprintf( stdout, "%c \n", testBoard[count][testCounter] );
 						}
-
 					}
+
+				}
 
 			}else if ( fileLineCounter >= 2 ){
 				for ( char *p = strtok( testLine,"," ); p != NULL; p = strtok( NULL, "," ) ){
@@ -283,7 +283,7 @@ int main ( int argc, char ** argv ) {
 
 		fclose ( testFileFP );
 
-		for ( int count = 0; count < 4; count++ ) {
+		for ( int count = 0; count < numPlayers; count++ ) {
 			free( testBoard[count] );
 		}
 		free( testBoard );
