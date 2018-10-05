@@ -1,7 +1,18 @@
+/*
+* Description:
+* @authors Mackenzie Quigley
+* @version 0.1
+* Last modified Oct 5th by MacKenzie Quigley
+*/
+
 #include "boardGenerator.h"
 
 // Initializes the dice in the list of pre-set dice. Call once at program start.
-/*Last modified october 5th by MacKenzie Quigley */
+/*
+*
+*
+* Last modified Oct 5th by MacKenzie Quigley
+*/
 void initializePresetDice(struct presetDice *inputArrayOfDice) {
 
 	for ( int currentPosition = 0; currentPosition < 16; currentPosition++ ) {
@@ -32,8 +43,8 @@ void initializePresetDice(struct presetDice *inputArrayOfDice) {
 
 
 /*
-* Description: Rolls the dice to be used at the start of each game. Puts the rolled dice in
-* gameDice. Does not shuffle the dice. Helper function.
+*
+*
 * Last modified october 5th by MacKenzie Quigley
 */
 void rollNoShuffleDice ( struct rolledDice *gameDice, struct presetDice *inputArrayOfDice ) {
@@ -50,7 +61,11 @@ void rollNoShuffleDice ( struct rolledDice *gameDice, struct presetDice *inputAr
 }
 
 // Shuffles an array of rolled dice. Helper function.
-/*Last modified october 4th by MacKenzie Quigley */
+/*
+*
+*
+* Last modified Oct 5th by MacKenzie Quigley
+*/
 void shuffleRolledDicePositions( struct rolledDice* gameDice ) {
 
 	struct rolledDice newGameDice[ 16 ];
@@ -83,7 +98,11 @@ void shuffleRolledDicePositions( struct rolledDice* gameDice ) {
 
 // Rolls the dice to be used at the start of the game and shuffles them, putting
 // the dice into the 2D array gameDice. Call once at the start of every game.
-/* Last modified oct 5th by Mackenzie Quigley*/
+/*
+*
+*
+* Last modified Oct 5th by MacKenzie Quigley
+*/
 void rollDice ( struct rolledDice **gameBoard, struct presetDice *inputArrayOfDice ) {
 
 	gameBoard[ 0 ] = malloc( sizeof ( struct rolledDice ) * 4);
@@ -110,7 +129,11 @@ void rollDice ( struct rolledDice **gameBoard, struct presetDice *inputArrayOfDi
 }
 
 // Prints a visualization of the input array of rolledDice.
-/* Last modified oct 5th by Mackenzie Quigley*/
+/*
+*
+*
+* Last modified Oct 5th by MacKenzie Quigley
+*/
 void printGameBoard ( struct rolledDice **gameBoard ) {
 
 	for ( int index = 0; index < 4; index++ ) {
@@ -134,7 +157,11 @@ void printGameBoard ( struct rolledDice **gameBoard ) {
 
 }
 
-/* Last modified oct 5th by Mackenzie Quigley*/
+/*
+*
+*
+* Last modified Oct 5th by MacKenzie Quigley
+*/
 void printBoard ( char boggle[ ][ 4 ] ) {
 
 	for ( int index = 0; index < 4; index++ ) {
@@ -159,7 +186,11 @@ void printBoard ( char boggle[ ][ 4 ] ) {
 }
 
 /** Converts board from a string version to 2D array. Used in test mode**/
-/* Last modified oct 5th by Mackenzie Quigley*/
+/*
+*
+*
+* Last modified Oct 5th by MacKenzie Quigley
+*/
 void convertToBoard ( char *letters, char ***board ) {
 
 	// allocate space for boggle board on heap in order to access it in main.

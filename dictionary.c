@@ -1,3 +1,10 @@
+/*
+* Description:
+* @authors MacKenzie Quigley
+* @version 0.1
+* Last modified Oct 5th by MacKenzie Quigley
+*/
+
 #include <string.h>
 #include <stdio.h>
 
@@ -6,7 +13,11 @@
 
 //form hash value for string s
 //this produces a starting value in the dictionary array
-/* Last modified Oct 4th by MacKenzie Quigley*/
+/*
+*
+*
+* Last modified Oct 5th by MacKenzie Quigley
+*/
 unsigned formHashValue ( const char *string ) {
 
 	unsigned hashValue = 0;
@@ -23,7 +34,11 @@ unsigned formHashValue ( const char *string ) {
 }
 
 /* Checks to see if the word is in the dictionary */
-/* Last modified Oct 4th by MacKenzie Quigley*/
+/*
+*
+*
+* Last modified Oct 5th by MacKenzie Quigley
+*/
 dictionaryStruct *lookupWord ( dictionaryStruct **dictionary, int hashSize, const char *key ) {
 
 	dictionaryStruct *np;
@@ -41,7 +56,11 @@ dictionaryStruct *lookupWord ( dictionaryStruct **dictionary, int hashSize, cons
 
 }
 
-/* Last modified Oct 4th by MacKenzie Quigley*/
+/*
+*
+*
+* Last modified Oct 5th by MacKenzie Quigley
+*/
 dictionaryStruct *insertWord ( dictionaryStruct **dictionary, int hashSize,  const char *key ) {
 
 	unsigned int hashValue;
@@ -67,7 +86,11 @@ dictionaryStruct *insertWord ( dictionaryStruct **dictionary, int hashSize,  con
 
 }
 
-/* Last modified Oct 5th by MacKenzie Quigley*/
+/*
+*
+*
+* Last modified Oct 5th by MacKenzie Quigley
+*/
 void freeDictionary ( dictionaryStruct **dictionary, int hashSize ) {
 
 	for ( int sizeIndex = 0; sizeIndex < hashSize; sizeIndex++ ) {
@@ -93,8 +116,12 @@ void freeDictionary ( dictionaryStruct **dictionary, int hashSize ) {
 
 }
 
-/* make a duplicate of s */
-/* Last modified Oct 5th by MacKenzie Quigley*/
+// make a duplicate of s
+/*
+*
+*
+* Last modified Oct 5th by MacKenzie Quigley
+*/
 char *copyString ( const char *string ) {
 
 	char *duplicate;

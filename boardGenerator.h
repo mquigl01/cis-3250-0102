@@ -14,6 +14,7 @@ typedef struct presetDice {
 
 	char *configurations;
 	int position;
+	
 } PresetDice;
 
 
