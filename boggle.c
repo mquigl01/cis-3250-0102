@@ -125,14 +125,14 @@ int main ( int argc, char ** argv ) {
 
 			if ( strcmp( originalInputWord, "q" ) == 0 ) {
 				// "q" is the input, print scoreboard and exit game
-				printScoreboard( head );
+				printScoreBoard( head );
 				break;
 			}
 			// "n" is the input, adds user to/changes user in linked list and
 			// resets game
 			if ( strcmp( originalInputWord, "n" ) == 0 ) {
 
-				printScoreboard(head);
+				printScoreBoard(head);
 				fprintf( stdout, "Your current score: %d \n", currentScore );
 				fprintf( stdout, "What is your name? \n" );
 				scanf( "%s", inputName );
