@@ -15,12 +15,10 @@ int abidesRules(  int i, int j, char *word, struct rolledDice** gameBoard, int s
   int newX;
   int newY;
   char findLetter;
-  char currentLetter = word[  subLen  ];
-  int ans = (  subLen == ( strlen( word )-1 )  );
 
   // right, digUpRight, up, digUpLeft, left, digDownLeft, down, digDownRight
   int allX[ ] = { 0, -1, -1, -1, 0, 1, 1, 1 };
-  int all_y[ ] = { 1, 1, 0, -1, -1, -1, 0, 1 };
+  int allY[ ] = { 1, 1, 0, -1, -1, -1, 0, 1 };
 
   if(  subLen == (  strlen(  word  ) -1  )  ){
 
@@ -36,11 +34,11 @@ int abidesRules(  int i, int j, char *word, struct rolledDice** gameBoard, int s
     newY = j + allY[ adjCell ];
 
     if( ( newX >= 0 ) && ( newX < 4 ) && ( newY >=0 ) && ( newY < 4 )
-    && toupper( findLetter ) == get_letter( newX, newY, gameBoard ) && !visited[ newX ][ newY ] ){
+    && toupper( findLetter ) == getLetter( newX, newY, gameBoard ) && !visited[ newX ][ newY ] ){
 
       visited[ newX ][ newY ] = 1;
       ++subLen;
-      result = abides_rules( newX, newY, word, gameBoard, subLen, visited );
+      result = abidesRules( newX, newY, word, gameBoard, subLen, visited );
 
       if( result ){
         return 1;
@@ -90,7 +88,7 @@ int wordChecker( struct rolledDice **gameBoard, char *word ){
 
     for ( int col = 0; col < 4; col++ ) {
 
-      if( abides_rules( row, col, word, gameBoard, 0, visited ) ){
+      if( abidesRules( row, col, word, gameBoard, 0, visited ) ){
 
         free( visited[ 0 ] );
         free( visited[ 1 ] );
@@ -131,7 +129,6 @@ int testAbidesRules( int i, int j, char *word, char **gameBoard, int subLen, int
 
   // use subLen as index to see what letter to find
   char currentLetter = word[ subLen ];
-  int ans = ( subLen == ( strlen( word )-1 ) );
 
   if( subLen == ( strlen( word )-1 ) ){
 
@@ -233,9 +230,6 @@ int testWordChecker( char **boggle, char *word ){
 /* Revised by Josh Aidelman and Jaden Walt on October 4th at 4:20 PM */
 int hcWordChecker( char boggle[  ] [ 4 ], char *word ){
 
-  int row;
-  int letter;
-  int col;
   int m;
   int n;
   int **visited;
@@ -295,7 +289,6 @@ int hcAbidesRules( int i, int j, char *word, char boggle[  ][ 4 ], int subLen, i
   int allY[  ] = {1, 1, 0, -1, -1, -1, 0, 1};
   char currentLetter = word[ subLen ];
   char findLetter;
-  int ans = ( subLen == ( strlen( word )-1 ) );
 
   if( subLen == ( strlen( word )-1 ) ){
     return 1;

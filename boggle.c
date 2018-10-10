@@ -66,7 +66,7 @@ void incrementTotalScore( int *userScore, char *word ){
 
 
 int main ( int argc, char ** argv ) {
-	int count, points = 0, testPoints = 0, invalidSize = 0;
+	int testPoints = 0;
 	int numPlayers = 4;
 	char inputWord[100];
 	char originalInputWord[100];
@@ -91,8 +91,6 @@ int main ( int argc, char ** argv ) {
 	RolledDice *gameBoard[4];
 
 	FILE *outputFP;
-	char readLine[MAX_LINE];
-
 
 	if( !( inputFP = fopen ( DICT_NAME , "r" ) ) )    {
 		fprintf( stderr,"Could not open file \"%s\" for reading dictionary words\n", DICT_NAME );
@@ -120,19 +118,18 @@ int main ( int argc, char ** argv ) {
 
 			convertToUpper2( &inputWord );
 
-			User *thisUser;
 			char inputName[100];
 
 			if ( strcmp( originalInputWord, "q" ) == 0 ) {
 				// "q" is the input, print scoreboard and exit game
-				printScoreboard( head );
+				printScoreBoard( head );
 				break;
 			}
 			// "n" is the input, adds user to/changes user in linked list and
 			// resets game
 			if ( strcmp( originalInputWord, "n" ) == 0 ) {
 
-				printScoreboard(head);
+				printScoreBoard(head);
 				fprintf( stdout, "Your current score: %d \n", currentScore );
 				fprintf( stdout, "What is your name? \n" );
 				scanf( "%s", inputName );
@@ -197,11 +194,9 @@ int main ( int argc, char ** argv ) {
 		fprintf( stdout, "playing in test mode with file: %s\n", fileName );
 		FILE *testFileFP;
 		char testLine [MAX_LINE];
-		char *testWords;
 		char **testBoard;
 		int fileLineCounter = 1;
 		int count,testCounter;
-		dictionaryStruct* testResult;
 		int begin = 0;
 
 		// (1) read first line which is the board
@@ -233,13 +228,13 @@ int main ( int argc, char ** argv ) {
 
 			}else if ( fileLineCounter >= 2 ){
 				for ( char *p = strtok( testLine,"," ); p != NULL; p = strtok( NULL, "," ) ){
-					checkEnglish = lookupWord( englishDictionary, BIG_HASH_SIZE, convert_to_upper( &p ) );
+					checkEnglish = lookupWord( englishDictionary, BIG_HASH_SIZE, convertToUpper( &p ) );
 
 					if ( checkEnglish != NULL ) {
 						checkSubmitted = lookupWord( guessedWords, SMALL_HASH_SIZE, p );
 
 						if ( checkSubmitted == NULL ) {
-							if( test_word_checker( testBoard, p ) ){
+							if( testWordChecker( testBoard, p ) ){
 								insertWord( guessedWords, SMALL_HASH_SIZE, p );
 								incrementTotalScore( &testPoints, p );
 								fprintf( stdout,"Correct! You total score is now: %d \n",testPoints );

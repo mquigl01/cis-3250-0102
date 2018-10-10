@@ -53,8 +53,8 @@ void rollNoShuffleDice ( struct rolledDice *gameDice, struct presetDice *inputAr
 
 	for ( int index = 0; index < 16; index++ ) {
 
-		int r = rand( ) % 6;
-		gameDice[ index ].character = inputArrayOfDice[ index ].configurations[ r ];
+		int randomNumber = rand( ) % 6;
+		gameDice[ index ].character = inputArrayOfDice[ index ].configurations[ randomNumber ];
 
 	}
 
@@ -113,14 +113,14 @@ void rollDice ( struct rolledDice **gameBoard, struct presetDice *inputArrayOfDi
 	// temporary array of structs to contain adjusted 1D array of dice.
 	struct rolledDice adjustedDiceArray[ 16 ];
 
-	rollNoShuffleDice(adjustedDiceArray, inputArrayOfDice);
-	shuffleRolledDicePositions(adjustedDiceArray);
+	rollNoShuffleDice ( adjustedDiceArray, inputArrayOfDice );
+	shuffleRolledDicePositions (adjustedDiceArray );
 
 	for ( int index = 0; index < 4; index++ ) {
 
-		for ( int j = 0; j < 4; j++) {
+		for ( int secondIndex = 0; secondIndex < 4; secondIndex++) {
 
-			gameBoard[i][j] = adjustedDiceArray[i*4 + j];
+			gameBoard[ index ][ secondIndex ] = adjustedDiceArray[ index * 4 + secondIndex ];
 
 		}
 
@@ -138,16 +138,16 @@ void printGameBoard ( struct rolledDice **gameBoard ) {
 
 	for ( int index = 0; index < 4; index++ ) {
 
-			for ( int j = 0; j < 4; j++ ) {
+			for ( int secondIndex = 0; secondIndex < 4; secondIndex++ ) {
 
-				if ( j != 3 ) {
+				if ( secondIndex != 3 ) {
 
-					printf("%c \t", gameBoard[ index ][ j ].character);
+					printf("%c \t", gameBoard[ index ][ secondIndex ].character);
 
 				}
 				else {
 
-					printf("%c \n", gameBoard[ index ][ j ].character);
+					printf("%c \n", gameBoard[ index ][ secondIndex ].character);
 
 				}
 
@@ -166,16 +166,16 @@ void printBoard ( char boggle[ ][ 4 ] ) {
 
 	for ( int index = 0; index < 4; index++ ) {
 
-			for ( int j = 0; j < 4; j++ ) {
+			for ( int secondIndex = 0; secondIndex < 4; secondIndex++ ) {
 
-				if ( j != 3 ) {
+				if ( secondIndex != 3 ) {
 
-					printf( "%c \t", boggle[ index ][ j ] );
+					printf( "%c \t", boggle[ index ][ secondIndex ] );
 
 				}
 				else {
 
-					printf( "%c \n", boggle[ index ][ j ] );
+					printf( "%c \n", boggle[ index ][ secondIndex ] );
 
 				}
 
@@ -189,36 +189,35 @@ void printBoard ( char boggle[ ][ 4 ] ) {
 /*
 *
 *
-* Last modified Oct 5th by MacKenzie Quigley
+* Last modified Oct 10th by MacKenzie Quigley
 */
 void convertToBoard ( char *letters, char ***board ) {
 
 	// allocate space for boggle board on heap in order to access it in main.
-	char *word;
-	int i, j, t = 0;
+	int lettersIndex = 0;
 
-	*board = malloc(sizeof(char * ) * 4);
-	char **board_deref = *board;
+	*board = malloc ( sizeof( char * ) * 4 );
+	char **boardArray = *board;
 
-	board_deref[0] = malloc(sizeof(char) * 4);
-	board_deref[1] = malloc(sizeof(char) * 4);
-	board_deref[2] = malloc(sizeof(char) * 4);
-	board_deref[3] = malloc(sizeof(char) * 4);
+	boardArray[ 0 ] = malloc ( sizeof(char) * 4 );
+	boardArray[ 1 ] = malloc ( sizeof(char) * 4 );
+	boardArray[ 2 ] = malloc ( sizeof(char) * 4 );
+	boardArray[ 3 ] = malloc ( sizeof(char) * 4 );
 
-	for ( index = 0; index < 4; index++ ) {
+	for ( int index = 0; index < 4; index++ ) {
 
-		for ( j = 0; j < 4; j++ ) {
+		for ( int secondIndex = 0; secondIndex < 4; secondIndex++ ) {
 
-			if ( j != 3 ) {
+			if ( secondIndex != 3 ) {
 
-				board_deref[ index ][ j ] = letters[ t ];
-				t++;
+				boardArray[ index ][ secondIndex ] = letters[ lettersIndex ];
+				lettersIndex++;
 
 			}
 			else {
 
-				board_deref[ index ][ j ] = letters[ t ];
-				t++;
+				boardArray[ index ][ secondIndex ] = letters[ lettersIndex ];
+				lettersIndex++;
 
 			}
 
