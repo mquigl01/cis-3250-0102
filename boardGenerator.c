@@ -1,21 +1,20 @@
 /*
-* Description:
-* @authors Mackenzie Quigley
+* Description: This programs code is to generate the board for the game. This is used to make the dice, roll the dice, generate the board, and converts the board from a string to a 2D array.
+* @authors Mackenzie Quigley, Ali El Cheikh Ali
 * @version 0.1
-* Last modified Oct 5th by MacKenzie Quigley
+* Last modified Oct 11th by Ali El Cheikh Ali
 */
 
 #include "boardGenerator.h"
 
-// Initializes the dice in the list of pre-set dice. Call once at program start.
-/*
+/*	Function: void initializePresetDice
+*	Description: Initializes the dice in the list of pre-set dice. Call once at program start.
 *
-*
-* Last modified Oct 5th by MacKenzie Quigley
+*	Last modified Oct 11th by Ali El Cheikh Ali
 */
 void initializePresetDice(struct presetDice *inputArrayOfDice) {
 
-	for ( int currentPosition = 0; currentPosition < 16; currentPosition++ ) {
+	for ( int currentPosition = 0; currentPosition < 16; currentPosition++ ) {	//goes through every character underneath 
 
 		inputArrayOfDice[currentPosition].position = 0;
 
@@ -42,10 +41,10 @@ void initializePresetDice(struct presetDice *inputArrayOfDice) {
 }
 
 
-/*
+/*	Function: void rollNoShuffleDice
+*	Description: Rolls the dice without shuffling the chars for each dice roll.
 *
-*
-* Last modified october 5th by MacKenzie Quigley
+*	Last modified october 11th by Ali El Cheikh Ali
 */
 void rollNoShuffleDice ( struct rolledDice *gameDice, struct presetDice *inputArrayOfDice ) {
 
@@ -60,11 +59,10 @@ void rollNoShuffleDice ( struct rolledDice *gameDice, struct presetDice *inputAr
 
 }
 
-// Shuffles an array of rolled dice. Helper function.
-/*
+/*	Function: void shuffleRolledDicePositions
+*	Description: Shuffles an array of rolled dice. Helper function.
 *
-*
-* Last modified Oct 5th by MacKenzie Quigley
+*	Last modified Oct 11th by Ali El Cheikh Ali
 */
 void shuffleRolledDicePositions( struct rolledDice* gameDice ) {
 
@@ -95,13 +93,10 @@ void shuffleRolledDicePositions( struct rolledDice* gameDice ) {
 
 }
 
-
-// Rolls the dice to be used at the start of the game and shuffles them, putting
-// the dice into the 2D array gameDice. Call once at the start of every game.
-/*
+/*	Function: void rollDice
+*	Description: Rolls the dice to be used at the start of the game and shuffles them, putting the dice into the 2D array gameDice. Call once at the start of every game.
 *
-*
-* Last modified Oct 5th by MacKenzie Quigley
+*	Last modified Oct 11th by Ali El Cheikh Ali
 */
 void rollDice ( struct rolledDice **gameBoard, struct presetDice *inputArrayOfDice ) {
 
@@ -128,11 +123,10 @@ void rollDice ( struct rolledDice **gameBoard, struct presetDice *inputArrayOfDi
 
 }
 
-// Prints a visualization of the input array of rolledDice.
-/*
+/*	Function: void printGameBoard
+*	Description: Prints a visualization of the input array of rolledDice.
 *
-*
-* Last modified Oct 5th by MacKenzie Quigley
+*	Last modified Oct 11th by Ali El Cheikh Ali
 */
 void printGameBoard ( struct rolledDice **gameBoard ) {
 
@@ -157,10 +151,10 @@ void printGameBoard ( struct rolledDice **gameBoard ) {
 
 }
 
-/*
+/*	Function: void printBoard
+*	Description: prints the board for the boggle game.
 *
-*
-* Last modified Oct 5th by MacKenzie Quigley
+*	Last modified Oct 11th by Ali El Cheikh Ali
 */
 void printBoard ( char boggle[ ][ 4 ] ) {
 
@@ -185,11 +179,10 @@ void printBoard ( char boggle[ ][ 4 ] ) {
 
 }
 
-/** Converts board from a string version to 2D array. Used in test mode**/
-/*
+/*	Function: void convertToBoard 
+*	Description: Converts board from a string version to 2D array. Used in test mode
 *
-*
-* Last modified Oct 10th by MacKenzie Quigley
+*	Last modified Oct 11th by Ali El Cheikh Ali
 */
 void convertToBoard ( char *letters, char ***board ) {
 

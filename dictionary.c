@@ -1,8 +1,8 @@
 /*
-* Description:
-* @authors MacKenzie Quigley
-* @version 0.1
-* Last modified Oct 5th by MacKenzie Quigley
+*	Description: The dictionary of the game, this file contains the words, inserted into the dictionary and the words that are looked up in the dictionary by the user. 
+*	@authors MacKenzie Quigley, Ali El Cheikh Ali
+*	@version 0.1
+*	Last modified Oct 11th by Ali El Cheikh Ali
 */
 
 #include <string.h>
@@ -11,12 +11,12 @@
 #include "dictionary.h"
 
 
-//form hash value for string s
-//this produces a starting value in the dictionary array
-/*
+
+/*	Function unsigned formHashValue
+*	Forms a hashvalue for string s
+*	This produces a starting value in the dictionary array
 *
-*
-* Last modified Oct 5th by MacKenzie Quigley
+*	Last modified Oct 11th by Ali El Cheikh Ali
 */
 unsigned formHashValue ( const char *string ) {
 
@@ -24,25 +24,24 @@ unsigned formHashValue ( const char *string ) {
 
 	while ( *string != '\0' ) {
 
-		hashValue = *string + 31 * hashValue;
+		hashValue = *string + 31 * hashValue;	 
 		string++;
 
 	}
 
-	return hashValue;
+	return hashValue; 
 
 }
 
-/* Checks to see if the word is in the dictionary */
-/*
+/*	Function dictionaryStruct *lookupWord
+*	Checks to see if the word is already in the dictionary
 *
-*
-* Last modified Oct 5th by MacKenzie Quigley
+*	Last modified Oct 11th by Ali El Cheikh Ali
 */
 dictionaryStruct *lookupWord ( dictionaryStruct **dictionary, int hashSize, const char *key ) {
 
 	dictionaryStruct *np;
-	unsigned int hashValue = formHashValue( key );
+	unsigned int hashValue = formHashValue( key ); 
 
 	for ( np = dictionary[ hashValue % hashSize ]; np != NULL; np = np->next ) {
 
@@ -56,10 +55,10 @@ dictionaryStruct *lookupWord ( dictionaryStruct **dictionary, int hashSize, cons
 
 }
 
-/*
+/*	Function dictionaryStruct *instertWord
+*	Inserts word into the dictionary 
 *
-*
-* Last modified Oct 5th by MacKenzie Quigley
+*	Last modified Oct 11th by Ali El Cheikh Ali
 */
 dictionaryStruct *insertWord ( dictionaryStruct **dictionary, int hashSize,  const char *key ) {
 
@@ -86,10 +85,10 @@ dictionaryStruct *insertWord ( dictionaryStruct **dictionary, int hashSize,  con
 
 }
 
-/*
+/*	Function void freeDictionary 
+*	Frees the temporary string in the dictionary
 *
-*
-* Last modified Oct 5th by MacKenzie Quigley
+*	Last modified Oct 11th by Ali El Cheikh Ali 
 */
 void freeDictionary ( dictionaryStruct **dictionary, int hashSize ) {
 
@@ -116,11 +115,10 @@ void freeDictionary ( dictionaryStruct **dictionary, int hashSize ) {
 
 }
 
-// make a duplicate of s
-/*
+/*	Function char *copyString
+*	Makes a duplicate of string s
 *
-*
-* Last modified Oct 5th by MacKenzie Quigley
+*	Last modified Oct 11th by Ali El Cheikh Ali
 */
 char *copyString ( const char *string ) {
 
