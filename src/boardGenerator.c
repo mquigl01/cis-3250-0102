@@ -1,15 +1,15 @@
 /*
-* Description: This programs code is to generate the board for the game. This is used to make the dice, roll the dice, generate the board, and converts the board from a string to a 2D array.
-* @authors Mackenzie Quigley, Ali El Cheikh Ali
-* @version 0.1
+*	Description: This programs code is to generate the board for the game. This is used to make the dice, roll the dice, generate the board, and converts the board from a string to a 2D array.
+*	@authors Mackenzie Quigley, Ali El-Cheikh Ali
+*	@version 0.1
 *	Modifications: fixed and updated comments to follow coding conventions
-* Last modified Oct 12th by MacKenzie Quigley
+*	Last modified Oct 12th by Ali El-Cheikh Ali
 */
 
 #include "boardGenerator.h"
 
 /*
-* Function: void initializePresetDice
+*	Function: void initializePresetDice
 *	Description: Initializes the dice in the list of pre-set dice. Call once at program start.
 *	Modifications: fixed and updated comments to follow coding conventions
 *	Last modified Oct 12th by MacKenzie Quigley
@@ -44,7 +44,7 @@ void initializePresetDice(struct presetDice *inputArrayOfDice) {
 
 
 /*
-* Function: void rollNoShuffleDice
+*	Function: void rollNoShuffleDice
 *	Description: Rolls the dice without shuffling the chars for each dice roll.
 *	Modifications: fixed and updated comments to follow coding conventions
 *	Last modified october 11th by Ali El Cheikh Ali
@@ -63,7 +63,7 @@ void rollNoShuffleDice ( struct rolledDice *gameDice, struct presetDice *inputAr
 }
 
 /*
-* Function: void shuffleRolledDicePositions
+*	Function: void shuffleRolledDicePositions
 *	Description: Shuffles an array of rolled dice. Helper function.
 *	Modifications: fixed and updated comments to follow coding conventions
 *	Last modified Oct 12th by MacKenzie Quigley
@@ -98,12 +98,12 @@ void shuffleRolledDicePositions( struct rolledDice* gameDice ) {
 }
 
 /*
-* Function: void rollDice
+*	Function: void rollDice
 *	Description: Rolls the dice to be used at the start of the game and shuffles
-* them, putting the dice into the 2D array gameDice. Call once at the start of
-* every game.
-*	Modifications: fixed and updated comments to follow coding conventions
-*	Last modified Oct 12th by MacKenzie Quigley
+*	them, putting the dice into the 2D array gameDice. Call once at the start of
+*	every game.
+*	Modifications: fixed and updated comments again to follow coding conventions
+*	Last modified Oct 12th by Ali El-Cheikh Ali
 */
 void rollDice ( struct rolledDice **gameBoard, struct presetDice *inputArrayOfDice ) {
 
@@ -131,7 +131,7 @@ void rollDice ( struct rolledDice **gameBoard, struct presetDice *inputArrayOfDi
 }
 
 /*
-* Function: void printGameBoard
+*	Function: void printGameBoard
 *	Description: Prints a visualization of the input array of rolledDice.
 *	Modifications: fixed and updated comments to follow coding conventions
 *	Last modified Oct 12th by MacKenzie Quigley
@@ -162,9 +162,9 @@ void printGameBoard ( struct rolledDice **gameBoard ) {
 }
 
 /*
-* Function: void printBoard
+*	Function: void printBoard
 *	Description: prints the board to the screen based on a two dimensional array
-* passed through the functions paramenters.
+*	passed through the functions paramenters.
 *	Modifications: fixed and updated comments to follow coding conventions
 *	Last modified Oct 12th by MacKenzie Quigley
 */
@@ -195,10 +195,10 @@ void printBoard ( char boggle[ ][ 4 ] ) {
 }
 
 /*
-* Function: void convertToBoard
+*	Function: void convertToBoard
 *	Description: Converts a string of letters that is passed through parameters
-* to a two dimensional array called boardArray that is used to form the 4x4
-* board
+*	to a two dimensional array called boardArray that is used to form the 4x4
+*	board
 *	Modifications: fixed and updated comments to follow coding conventions
 *	Last modified Oct 12th by MacKenzie Quigley
 */
