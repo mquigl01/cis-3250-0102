@@ -2,19 +2,21 @@
 * Description: This programs code is to generate the board for the game. This is used to make the dice, roll the dice, generate the board, and converts the board from a string to a 2D array.
 * @authors Mackenzie Quigley, Ali El Cheikh Ali
 * @version 0.1
-* Last modified Oct 11th by Ali El Cheikh Ali
+*	Modifications: fixed and updated comments to follow coding conventions
+* Last modified Oct 12th by MacKenzie Quigley
 */
 
 #include "boardGenerator.h"
 
-/*	Function: void initializePresetDice
+/*
+* Function: void initializePresetDice
 *	Description: Initializes the dice in the list of pre-set dice. Call once at program start.
-*
-*	Last modified Oct 11th by Ali El Cheikh Ali
+*	Modifications: fixed and updated comments to follow coding conventions
+*	Last modified Oct 12th by MacKenzie Quigley
 */
 void initializePresetDice(struct presetDice *inputArrayOfDice) {
 
-	for ( int currentPosition = 0; currentPosition < 16; currentPosition++ ) {	//goes through every character underneath 
+	for ( int currentPosition = 0; currentPosition < 16; currentPosition++ ) {	//goes through every character underneath
 
 		inputArrayOfDice[ currentPosition ].position = 0;
 
@@ -41,81 +43,86 @@ void initializePresetDice(struct presetDice *inputArrayOfDice) {
 }
 
 
-/*	Function: void rollNoShuffleDice
+/*
+* Function: void rollNoShuffleDice
 *	Description: Rolls the dice without shuffling the chars for each dice roll.
-*
+*	Modifications: fixed and updated comments to follow coding conventions
 *	Last modified october 11th by Ali El Cheikh Ali
 */
 void rollNoShuffleDice ( struct rolledDice *gameDice, struct presetDice *inputArrayOfDice ) {
-
+	int gameDiceSize = 16;
 	srand( time( NULL ) );
 
-	for ( int index = 0; index < 16; index++ ) {
+	for ( int gameDicePosition = 0; gameDicePosition < gameDiceSize; gameDicePosition++ ) {
 
 		int randomNumber = rand( ) % 6;
-		gameDice[ index ].character = inputArrayOfDice[ index ].configurations[ randomNumber ];
+		gameDice[ gameDicePosition ].character = inputArrayOfDice[ gameDicePosition ].configurations[ randomNumber ];
 
 	}
 
 }
 
-/*	Function: void shuffleRolledDicePositions
+/*
+* Function: void shuffleRolledDicePositions
 *	Description: Shuffles an array of rolled dice. Helper function.
-*
-*	Last modified Oct 11th by Ali El Cheikh Ali
+*	Modifications: fixed and updated comments to follow coding conventions
+*	Last modified Oct 12th by MacKenzie Quigley
 */
 void shuffleRolledDicePositions( struct rolledDice* gameDice ) {
-
-	struct rolledDice newGameDice[ 16 ];
+	int gameDiceSize = 16;
+	struct rolledDice newGameDice[ gameDiceSize ];
 	int shufflePostition = 0;
 
-	for ( int index = 0; index < 16; index++ ) {
+	for ( int gameDicePosition = 0; gameDicePosition < gameDiceSize; gameDicePosition++ ) {
 
 		srand( time( NULL ) );
 
 		if ( gameDice[ shufflePostition ].position == -1 ) {
 
-			shufflePostition = ( int ) ( rand() %16 );
+			shufflePostition = ( int ) ( rand() % gameDiceSize );
 
 		}
 
-		newGameDice[ index ] = gameDice[ shufflePostition ];
+		newGameDice[ gameDicePosition ] = gameDice[ shufflePostition ];
 		gameDice[ shufflePostition ].position = -1;
 
 	}
 
-	for ( int index = 0; index < 16; index++ ) {
+	for ( int gameDicePosition = 0; gameDicePosition < gameDiceSize; gameDicePosition++ ) {
 
-		gameDice[ index ] = newGameDice[ index ];
-		gameDice[ index ].position = index + 1;
+		gameDice[ gameDicePosition ] = newGameDice[ gameDicePosition ];
+		gameDice[ gameDicePosition ].position = gameDicePosition + 1;
 
 	}
 
 }
 
-/*	Function: void rollDice
-*	Description: Rolls the dice to be used at the start of the game and shuffles them, putting the dice into the 2D array gameDice. Call once at the start of every game.
-*
-*	Last modified Oct 11th by Ali El Cheikh Ali
+/*
+* Function: void rollDice
+*	Description: Rolls the dice to be used at the start of the game and shuffles
+* them, putting the dice into the 2D array gameDice. Call once at the start of
+* every game.
+*	Modifications: fixed and updated comments to follow coding conventions
+*	Last modified Oct 12th by MacKenzie Quigley
 */
 void rollDice ( struct rolledDice **gameBoard, struct presetDice *inputArrayOfDice ) {
 
-	gameBoard[ 0 ] = malloc( sizeof ( struct rolledDice ) * 4);
-	gameBoard[ 1 ] = malloc(sizeof ( struct rolledDice ) * 4);
-	gameBoard[ 2 ] = malloc(sizeof ( struct rolledDice ) * 4);
-	gameBoard[ 3 ] = malloc(sizeof ( struct rolledDice ) * 4);
+	int boardSize = 4;
+	struct rolledDice adjustedDiceArray[ boardSize * boardSize ];
 
-	// temporary array of structs to contain adjusted 1D array of dice.
-	struct rolledDice adjustedDiceArray[ 16 ];
+	gameBoard[ 0 ] = malloc( sizeof ( struct rolledDice ) * boardSize);
+	gameBoard[ 1 ] = malloc(sizeof ( struct rolledDice ) * boardSize);
+	gameBoard[ 2 ] = malloc(sizeof ( struct rolledDice ) * boardSize);
+	gameBoard[ 3 ] = malloc(sizeof ( struct rolledDice ) * boardSize);
 
 	rollNoShuffleDice ( adjustedDiceArray, inputArrayOfDice );
 	shuffleRolledDicePositions (adjustedDiceArray );
 
-	for ( int index = 0; index < 4; index++ ) {
+	for ( int horizontalPosition = 0; horizontalPosition < boardSize; horizontalPosition++ ) {
 
-		for ( int secondIndex = 0; secondIndex < 4; secondIndex++) {
+		for ( int verticalPosition = 0; verticalPosition < boardSize; verticalPosition++) {
 
-			gameBoard[ index ][ secondIndex ] = adjustedDiceArray[ index * 4 + secondIndex ];
+			gameBoard[ horizontalPosition ][ verticalPosition ] = adjustedDiceArray[ horizontalPosition * boardSize + verticalPosition ];
 
 		}
 
@@ -123,93 +130,105 @@ void rollDice ( struct rolledDice **gameBoard, struct presetDice *inputArrayOfDi
 
 }
 
-/*	Function: void printGameBoard
+/*
+* Function: void printGameBoard
 *	Description: Prints a visualization of the input array of rolledDice.
-*
-*	Last modified Oct 11th by Ali El Cheikh Ali
+*	Modifications: fixed and updated comments to follow coding conventions
+*	Last modified Oct 12th by MacKenzie Quigley
 */
 void printGameBoard ( struct rolledDice **gameBoard ) {
+	int boardSize = 4;
+	int lastVerticalPosition = 3;
 
-	for ( int index = 0; index < 4; index++ ) {
+	for ( int horizontalPosition = 0; horizontalPosition < boardSize; horizontalPosition++ ) {
 
-			for ( int secondIndex = 0; secondIndex < 4; secondIndex++ ) {
+		for ( int verticalPosition = 0; verticalPosition < boardSize; verticalPosition++ ) {
 
-				if ( secondIndex != 3 ) {
+			if ( verticalPosition != lastVerticalPosition ) {
 
-					printf("%c \t", gameBoard[ index ][ secondIndex ].character);
+				printf("%c \t", gameBoard[ horizontalPosition ][ verticalPosition ].character);
 
-				}
-				else {
+			}
+			else {
 
-					printf("%c \n", gameBoard[ index ][ secondIndex ].character);
-
-				}
+				printf("%c \n", gameBoard[ horizontalPosition ][ verticalPosition ].character);
 
 			}
 
 		}
 
+	}
+
 }
 
-/*	Function: void printBoard
-*	Description: prints the board for the boggle game.
-*
-*	Last modified Oct 11th by Ali El Cheikh Ali
+/*
+* Function: void printBoard
+*	Description: prints the board to the screen based on a two dimensional array
+* passed through the functions paramenters.
+*	Modifications: fixed and updated comments to follow coding conventions
+*	Last modified Oct 12th by MacKenzie Quigley
 */
 void printBoard ( char boggle[ ][ 4 ] ) {
 
-	for ( int index = 0; index < 4; index++ ) {
+	int boardSize = 4;
+	int lastVerticalPosition = 3;
 
-			for ( int secondIndex = 0; secondIndex < 4; secondIndex++ ) {
+	for ( int horizontalPosition = 0; horizontalPosition < boardSize; horizontalPosition++ ) {
 
-				if ( secondIndex != 3 ) {
+		for ( int verticalPosition = 0; verticalPosition < boardSize; verticalPosition++ ) {
 
-					printf( "%c \t", boggle[ index ][ secondIndex ] );
+			if ( verticalPosition != lastVerticalPosition ) {
 
-				}
-				else {
+				printf( "%c \t", boggle[ horizontalPosition ][ verticalPosition ] );
 
-					printf( "%c \n", boggle[ index ][ secondIndex ] );
+			}
+			else {
 
-				}
+				printf( "%c \n", boggle[ horizontalPosition ][ verticalPosition ] );
 
 			}
 
 		}
 
+	}
+
 }
 
-/*	Function: void convertToBoard 
-*	Description: Converts board from a string version to 2D array. Used in test mode
-*
-*	Last modified Oct 11th by Ali El Cheikh Ali
+/*
+* Function: void convertToBoard
+*	Description: Converts a string of letters that is passed through parameters
+* to a two dimensional array called boardArray that is used to form the 4x4
+* board
+*	Modifications: fixed and updated comments to follow coding conventions
+*	Last modified Oct 12th by MacKenzie Quigley
 */
 void convertToBoard ( char *letters, char ***board ) {
 
-	// allocate space for boggle board on heap in order to access it in main.
 	int lettersIndex = 0;
+	int boardSize = 4;
+	int lastVerticalPosition = 3;
 
-	*board = malloc ( sizeof( char * ) * 4 );
+	*board = malloc ( sizeof( char * ) * boardSize );
 	char **boardArray = *board;
 
-	boardArray[ 0 ] = malloc ( sizeof(char) * 4 );
-	boardArray[ 1 ] = malloc ( sizeof(char) * 4 );
-	boardArray[ 2 ] = malloc ( sizeof(char) * 4 );
-	boardArray[ 3 ] = malloc ( sizeof(char) * 4 );
+	boardArray[ 0 ] = malloc ( sizeof(char) * boardSize );
+	boardArray[ 1 ] = malloc ( sizeof(char) * boardSize );
+	boardArray[ 2 ] = malloc ( sizeof(char) * boardSize );
+	boardArray[ 3 ] = malloc ( sizeof(char) * boardSize );
 
-	for ( int index = 0; index < 4; index++ ) {
+	for ( int horizontalPosition = 0; horizontalPosition < boardSize; horizontalPosition++ ) {
 
-		for ( int secondIndex = 0; secondIndex < 4; secondIndex++ ) {
+		for ( int verticalPosition = 0; verticalPosition < boardSize; verticalPosition++ ) {
 
-			if ( secondIndex != 3 ) {
+			if ( verticalPosition != lastVerticalPosition ) {
 
-				boardArray[ index ][ secondIndex ] = letters[ lettersIndex ];
+				boardArray[ horizontalPosition ][ verticalPosition ] = letters[ lettersIndex ];
 				lettersIndex++;
 
 			}
 			else {
 
-				boardArray[ index ][ secondIndex ] = letters[ lettersIndex ];
+				boardArray[ horizontalPosition ][ verticalPosition ] = letters[ lettersIndex ];
 				lettersIndex++;
 
 			}

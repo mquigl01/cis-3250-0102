@@ -15,11 +15,11 @@
 
 
 
-/*	
+/*
 * Function: unsigned formHashValue
 *	Description: Forms a hashvalue for string passed through function parameters
 * which essentially produces a starting value
-*	Modifiecations: fixed and updated comments to follow coding conventions
+*	Modifications: fixed and updated comments to follow coding conventions
 * in the dictionary array
 *	Last modified Oct 12th by Mackenzie Quigley
 */
@@ -43,7 +43,7 @@ unsigned formHashValue ( const char *string ) {
 *	Description: Checks to see if the string that is passed through the Function
 * parameters is already in the dictionary. If it is: it returns the word, if not:
 * it returns NULL
-*	Modifiecations: fixed and updated comments to follow coding conventions
+*	Modifications: fixed and updated comments to follow coding conventions
 * Last modified Oct 12th by MacKenzie Quigley
 */
 dictionaryStruct *lookupWord ( dictionaryStruct **dictionary, int hashSize, const char *key ) {
@@ -69,7 +69,7 @@ dictionaryStruct *lookupWord ( dictionaryStruct **dictionary, int hashSize, cons
 * Function: dictionaryStruct *instertWord
 *	Description: Inserts and returns a new word into the dictionary if the word
 * does not already exist when using the function lookUpWord
-*	Modifiecations: fixed and updated comments to follow coding conventions
+*	Modifications: fixed and updated comments to follow coding conventions
 * Last modified Oct 12th by MacKenzie Quigley
 */
 dictionaryStruct *insertWord ( dictionaryStruct **dictionary, int hashSize,  const char *key ) {
@@ -102,7 +102,7 @@ dictionaryStruct *insertWord ( dictionaryStruct **dictionary, int hashSize,  con
 *	Description: Frees the temporary string in the dictionary by iterating through
 * the dictionary until reaching the specified hash size and freeing any nodes
 * that do not equal NULL
-*	Modifiecations: fixed and updated comments to follow coding conventions
+*	Modifications: fixed and updated comments to follow coding conventions
 *	Last modified Oct 12th by MacKenzie Quigley
 */
 void freeDictionary ( dictionaryStruct **dictionary, int hashSize ) {
@@ -134,7 +134,7 @@ void freeDictionary ( dictionaryStruct **dictionary, int hashSize ) {
 * Function: char *copyString
 *	Description: Makes and returns a duplicate of the string passed through
 * the function parameters
-*	Modifiecations: fixed and updated comments to follow coding conventions
+*	Modifications: fixed and updated comments to follow coding conventions
 *	Last modified Oct 12th by MacKenzie Quigley
 */
 char *copyString ( const char *string ) {
