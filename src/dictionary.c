@@ -1,11 +1,11 @@
 /*
-* Description: Looks up the word to see if it exists in the dictionary
-* @authors MacKenzie Quigley, Ali El Cheikh Ali
-* @version 0.1
-* Modifications: added comments, followed coding conventions document and changed
-* all variables to have meaning, used camel case for naming, and changed loop and if
-* statement spacing
-*	Last modified Oct 12th by Mackenzie Quigley
+*	Description: Looks up the word to see if it exists in the dictionary
+*	@authors MacKenzie Quigley, Ali El-Cheikh Ali
+*	@version 0.1
+*	Modifications: added comments, followed coding conventions document and changed
+*	all variables to have meaning, used camel case for naming, and changed loop and if
+*	statement spacing
+*	Last modified Oct 12th by Ali El-Cheikh Ali
 */
 
 #include <string.h>
@@ -16,11 +16,11 @@
 
 
 /*
-* Function: unsigned formHashValue
+*	Function: unsigned formHashValue
 *	Description: Forms a hashvalue for string passed through function parameters
-* which essentially produces a starting value
+*	which essentially produces a starting value
 *	Modifications: fixed and updated comments to follow coding conventions
-* in the dictionary array
+*	in the dictionary array
 *	Last modified Oct 12th by Mackenzie Quigley
 */
 unsigned formHashValue ( const char *string ) {
@@ -39,12 +39,12 @@ unsigned formHashValue ( const char *string ) {
 }
 
 /*
-* Function: dictionaryStruct *lookupWord
+*	Function: dictionaryStruct *lookupWord
 *	Description: Checks to see if the string that is passed through the Function
-* parameters is already in the dictionary. If it is: it returns the word, if not:
-* it returns NULL
+*	parameters is already in the dictionary. If it is: it returns the word, if not:
+*	it returns NULL
 *	Modifications: fixed and updated comments to follow coding conventions
-* Last modified Oct 12th by MacKenzie Quigley
+*	Last modified Oct 12th by MacKenzie Quigley
 */
 dictionaryStruct *lookupWord ( dictionaryStruct **dictionary, int hashSize, const char *key ) {
 
@@ -66,11 +66,11 @@ dictionaryStruct *lookupWord ( dictionaryStruct **dictionary, int hashSize, cons
 }
 
 /*
-* Function: dictionaryStruct *instertWord
+*	Function: dictionaryStruct *instertWord
 *	Description: Inserts and returns a new word into the dictionary if the word
-* does not already exist when using the function lookUpWord
+*	does not already exist when using the function lookUpWord
 *	Modifications: fixed and updated comments to follow coding conventions
-* Last modified Oct 12th by MacKenzie Quigley
+*	Last modified Oct 12th by MacKenzie Quigley
 */
 dictionaryStruct *insertWord ( dictionaryStruct **dictionary, int hashSize,  const char *key ) {
 
@@ -98,10 +98,10 @@ dictionaryStruct *insertWord ( dictionaryStruct **dictionary, int hashSize,  con
 }
 
 /*
-* Function: void freeDictionary
+*	Function: void freeDictionary
 *	Description: Frees the temporary string in the dictionary by iterating through
-* the dictionary until reaching the specified hash size and freeing any nodes
-* that do not equal NULL
+*	the dictionary until reaching the specified hash size and freeing any nodes
+*	that do not equal NULL
 *	Modifications: fixed and updated comments to follow coding conventions
 *	Last modified Oct 12th by MacKenzie Quigley
 */
@@ -131,9 +131,9 @@ void freeDictionary ( dictionaryStruct **dictionary, int hashSize ) {
 }
 
 /*
-* Function: char *copyString
+*	Function: char *copyString
 *	Description: Makes and returns a duplicate of the string passed through
-* the function parameters
+*	the function parameters
 *	Modifications: fixed and updated comments to follow coding conventions
 *	Last modified Oct 12th by MacKenzie Quigley
 */
