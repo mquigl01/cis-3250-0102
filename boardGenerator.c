@@ -17,7 +17,7 @@ void initializePresetDice(struct presetDice *inputArrayOfDice) {
 
 	for ( int currentPosition = 0; currentPosition < 16; currentPosition++ ) {
 
-		inputArrayOfDice[currentPosition].position = 0;
+		inputArrayOfDice[ currentPosition ].position = 0;
 
 	}
 
