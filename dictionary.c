@@ -1,7 +1,9 @@
 /*
-* Description:
+* Description: Looks up the word to see if it exists in the dictionary
 * @authors MacKenzie Quigley
 * @version 0.1
+* Modifications: followed coding conventions document and changed all variables to
+* have meaning, used camel case for naming, and changed loop and if statement spacing
 * Last modified Oct 5th by MacKenzie Quigley
 */
 
@@ -10,9 +12,6 @@
 
 #include "dictionary.h"
 
-
-//form hash value for string s
-//this produces a starting value in the dictionary array
 /*
 *
 *
@@ -33,21 +32,21 @@ unsigned formHashValue ( const char *string ) {
 
 }
 
-/* Checks to see if the word is in the dictionary */
 /*
-*
-*
+* Description: Checks to see if the word is in the dictionary
 * Last modified Oct 5th by MacKenzie Quigley
 */
 dictionaryStruct *lookupWord ( dictionaryStruct **dictionary, int hashSize, const char *key ) {
 
-	dictionaryStruct *np;
+	dictionaryStruct *newWord;
 	unsigned int hashValue = formHashValue( key );
 
-	for ( np = dictionary[ hashValue % hashSize ]; np != NULL; np = np->next ) {
+	for ( newWord = dictionary[ hashValue % hashSize ]; newWord != NULL; newWord = newWord->next ) {
 
-		if ( strcmp( key, np->key ) == 0 ) {
-			return np;
+		if ( strcmp( key, newWord->key ) == 0 ) {
+
+			return newWord;
+
 		}
 
 	}
@@ -64,25 +63,25 @@ dictionaryStruct *lookupWord ( dictionaryStruct **dictionary, int hashSize, cons
 dictionaryStruct *insertWord ( dictionaryStruct **dictionary, int hashSize,  const char *key ) {
 
 	unsigned int hashValue;
-	dictionaryStruct *np;
+	dictionaryStruct *newWord;
 
-	if ( ( np = lookupWord(dictionary, hashSize, key ) ) == NULL ) {
+	if ( ( newWord = lookupWord(dictionary, hashSize, key ) ) == NULL ) {
 
-		np = ( dictionaryStruct * ) malloc ( sizeof( *np ) );
+		newWord = ( dictionaryStruct * ) malloc ( sizeof( *newWord ) );
 
-		if ( np == NULL || ( np->key = copyString( key ) ) == NULL ) {
+		if ( newWord == NULL || ( newWord->key = copyString( key ) ) == NULL ) {
 
 			return NULL;
 
 		}
 
 		hashValue = formHashValue( key ) % hashSize;
-		np->next = dictionary [ hashValue ];
-		dictionary[ hashValue ] = np;
+		newWord->next = dictionary [ hashValue ];
+		dictionary[ hashValue ] = newWord;
 
 	}
 
-	return np;
+	return newWord;
 
 }
 
@@ -116,7 +115,6 @@ void freeDictionary ( dictionaryStruct **dictionary, int hashSize ) {
 
 }
 
-// make a duplicate of s
 /*
 *
 *
