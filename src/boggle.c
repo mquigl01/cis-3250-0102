@@ -9,17 +9,21 @@
 #define MAX_LINE 100
 
 /**
- - edited by Scott Csordas
- - not sure if I need to change function names to camel case
+ - edited by Scott Csordas, Oct 5, 1:00PM
  - set up board,
  - set up dictionary,
+ - ensured all coding conventions are met
 
   - edited by Josh Aidelman, Oct 5th, 2:58PM
-	- changed function names to camel case
+  - changed function names to camel case
+
+   -edited by Scott Csordas, Oct 16, 3:15PM
+   -added comments explaining functionality
  **/
 
 void incrementTotalScore( int *userScore, char *word );
 
+/*frees the current board and resets all elements*/
 void freeAndResetBoard( struct rolledDice** gameBoard,
 	struct presetDice* inputArrayOfDice ) {
 	int numPlayers = 4;
@@ -29,7 +33,7 @@ void freeAndResetBoard( struct rolledDice** gameBoard,
 	rollDice( gameBoard, inputArrayOfDice );
 }
 
-
+/*converts a lower case character to an upper case character*/
 char *convertToUpper( char **upper ){
 	char *upperDeref = *upper;
 
@@ -39,6 +43,7 @@ char *convertToUpper( char **upper ){
 	return upperDeref;
 }
 
+/*same as convertToUpper except does not use a double pointer*/
 char *convertToUpper2( char ( *upper )[] ){
 	char *upperDeref = *upper;
 
@@ -48,6 +53,7 @@ char *convertToUpper2( char ( *upper )[] ){
 	return upperDeref;
 }
 
+/*changes the score of the player*/
 void incrementTotalScore( int *userScore, char *word ){
 	int wordLen = strlen( word );
 	fprintf( stdout, "wordLen: %d\n",wordLen );
@@ -75,6 +81,9 @@ int main ( int argc, char ** argv ) {
 	char line [MAX_LINE];
 	char *fileName;
 
+	/*the dictionary that will be read from the 
+	*file to check if a users inputted word exists
+	*/
  	const char * DICT_NAME = "EnglishWords.txt";
 	dictionaryStruct* checkEnglish;
 	dictionaryStruct* checkSubmitted;
@@ -91,19 +100,20 @@ int main ( int argc, char ** argv ) {
 	RolledDice *gameBoard[4];
 
 	FILE *outputFP;
-
+	/*ensures the file exists and can be read*/
 	if( !( inputFP = fopen ( DICT_NAME , "r" ) ) )    {
 		fprintf( stderr,"Could not open file \"%s\" for reading dictionary words\n", DICT_NAME );
         return 1;
     }
 
+    /*reads from the dictionary from the file*/
 	while( fgets ( line, MAX_LINE, inputFP )!=NULL ) {
-		line[strcspn( line, "\r\n" )] = '\0';  //trim new line characters
+		line[strcspn( line, "\r\n" )] = '\0';  /*trim new line characters*/
 		insertWord( englishDictionary, BIG_HASH_SIZE, convertToUpper2( &line ) );
 	}
 	fclose ( inputFP );
 
-
+	/*checks what game mode is being played and sets up the game*/
 	if ( argc == 1 ){
 		fprintf(stdout, "playing in normal mode\n\n");
 
@@ -121,12 +131,13 @@ int main ( int argc, char ** argv ) {
 			char inputName[100];
 
 			if ( strcmp( originalInputWord, "q" ) == 0 ) {
-				// "q" is the input, print scoreboard and exit game
+				/* "q" prints the scores and quits the game*/
 				printScoreBoard( head );
 				break;
 			}
-			// "n" is the input, adds user to/changes user in linked list and
-			// resets game
+			/*"n" is the input, adds user to/changes user in linked list and
+			* resets game
+			*/
 			if ( strcmp( originalInputWord, "n" ) == 0 ) {
 
 				printScoreBoard(head);
@@ -154,7 +165,7 @@ int main ( int argc, char ** argv ) {
 			printGameBoard( gameBoard );
 
 			checkEnglish = lookupWord( englishDictionary, BIG_HASH_SIZE, inputWord );
-
+			/*ensures that the word is exists*/
 			if ( checkEnglish != NULL ) {
 				checkSubmitted = lookupWord( guessedWords, SMALL_HASH_SIZE, inputWord );
 
@@ -188,7 +199,7 @@ int main ( int argc, char ** argv ) {
 			free( gameBoard[count] );
 		}
 		freeAll( head );
-
+	/*does the second game mode which is for testing the program*/
 	}else if ( argc == 2 ){
 		fileName =  argv[1];
 		fprintf( stdout, "playing in test mode with file: %s\n", fileName );
