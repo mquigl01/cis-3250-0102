@@ -13,24 +13,24 @@ typedef struct user{
 
 } User;
 
-User* findUserWithName ( User* head, char* nameToFind );
+User* findUserWithName ( User *head, char *nameToFind );
 
-User* getUserAtIndex ( User* head, int index );
+User* getUserAtIndex ( User *head, int index );
 
-int getIndexOfUserWithName ( User* head, char* nameToFind );
+int getIndexOfUserWithName ( User *head, char *nameToFind );
 
-int getLength ( User* head );
+int getLength ( User *head );
 
 User* getLastNode ( User *head );
 
 void printScoreBoard ( User *head );
 
-void freeAll ( User* head );
+void freeAll ( User *head );
 
-void addNode ( User *head, char* name, int maxScore );
+void addNode ( User *head, char *name, int maxScore );
 
-int userIsInList ( User* head, char* nameToFind );
+int userIsInList ( User *head, char *nameToFind );
 
-void updateNodeWithName ( User *head, char* name, int currentScore );
+void updateNodeWithName ( User *head, char *name, int currentScore );
 
 #endif

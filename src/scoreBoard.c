@@ -1,3 +1,11 @@
+/*
+ * Program Description: Keeps track of the score for the duration of the boggle game
+ * Author(s): Mehak Bedi, Danielle Reyes
+ * Email(s): bedim@uoguelph.ca, dreyes03@uoguelph.ca
+ * Last Modified: October 31st 2018
+ *
+ */
+
 #include <stdlib.h>
 #include <stddef.h>
 #include <stdio.h>
@@ -9,14 +17,14 @@
  * head which has the name name_to_find. If such a User is not in the Linked
  * List, it will return NULL. Helper function to increment_score.
  *
- * Last Modified by Mehak Bedi & Danielle on October 6th
+ * Last Modified by Mehak Bedi & Danielle on October 31th
  */
-
-User* findUserWithName ( User* head, char* nameToFind ) {
+User* findUserWithName ( User *head, char *nameToFind ) {
     
 	if ( head == NULL ) {
         
 		return head;
+        
 	}
     
     User *current = head;
@@ -30,17 +38,19 @@ User* findUserWithName ( User* head, char* nameToFind ) {
 		}
         
 		current = ( current ) -> next;
+        
 	}
     
 	return NULL;
+    
 }
 
-/* frees every element of the linked list
+/* Frees every element of the linked list
  *
- * Last Modified by Mehak Bedi & Danielle on October 6th
+ * Last Modified by Mehak Bedi & Danielle on October 31th
  */
 
-void freeAll ( User* head ) {
+void freeAll ( User *head ) {
     
 	if ( head -> next == NULL ) {
         
@@ -64,10 +74,12 @@ void freeAll ( User* head ) {
 }
 
 /*
- * Last Modified by Mehak Bedi & Danielle on October 6th
+ * Returns a node at an index specified by the user
+ *
+ * Last Modified by Mehak Bedi & Danielle on October 31th
  */
 
-User* getUserAtIndex ( User* head, int index ) {
+User *getUserAtIndex ( User* head, int index ) {
     
 	if ( head == NULL ) {
         
@@ -92,13 +104,16 @@ User* getUserAtIndex ( User* head, int index ) {
 	}
     
 	return NULL;
+    
 }
 
 /*
- * Last Modified by Mehak Bedi & Danielle on October 6th
+ * Returns a node with the same name as nameToFind
+ *
+ * Last Modified by Mehak Bedi & Danielle on October 31th
  */
 
-int getIndexOfUserWithName ( User* head, char* nameToFind ) {
+int getIndexOfUserWithName ( User *head, char *nameToFind ) {
     
 	if ( head == NULL && head->name != nameToFind ) {
         
@@ -123,16 +138,17 @@ int getIndexOfUserWithName ( User* head, char* nameToFind ) {
 	}
     
 	return -1;
+    
 }
 
 /*
  * Finds whether or not a an existing user is already in the list. Of they are,
  * returns 1. If not, returns 0.
  *
- * Last Modified by Mehak Bedi & Danielle on October 6th
+ * Last Modified by Mehak Bedi & Danielle on October 31th
  */
 
-int userIsInList ( User* head, char* nameToFind ) {
+int userIsInList ( User *head, char *nameToFind ) {
     
 	User *current = head;
     
@@ -145,16 +161,20 @@ int userIsInList ( User* head, char* nameToFind ) {
 		}
         
 		current = ( current ) -> next;
+        
 	}
     
 	return 0;
+    
 }
 
 /*
- * Last Modified by Mehak Bedi & Danielle on October 6th
+ * Returns the length of the linked list
+ *
+ * Last Modified by Mehak Bedi & Danielle on October 31th
  */
 
-int getLength ( User* head ) {
+int getLength ( User *head ) {
     
 	if ( head == NULL ) {
         
@@ -176,9 +196,11 @@ int getLength ( User* head ) {
 		}
         
 		current = ( current ) -> next;
+        
 	}
     
 	return 0;
+    
 }
 
 /*
@@ -186,7 +208,7 @@ int getLength ( User* head ) {
  * Returns NULL if called with an empty head, although such a case is not used
  * in the main function add_node.
  *
- * Last Modified by Mehak Bedi & Danielle on October 6th
+ * Last Modified by Mehak Bedi & Danielle on October 31th
  */
 
 User* getLastNode ( User *head ) {
@@ -204,16 +226,21 @@ User* getLastNode ( User *head ) {
 		if ( current->next == NULL ) {
             
 			return current;
+            
 		}
         
 		current = ( current ) -> next;
+        
 	}
     
 	return NULL;
+    
 }
 
 /*
- * Last Modified by Mehak Bedi & Danielle on October 6th
+ * Prints the scoreboard
+ *
+ * Last Modified by Mehak Bedi & Danielle on October 31th
  */
 
 void printScoreBoard ( User *head ) {
@@ -238,18 +265,24 @@ void printScoreBoard ( User *head ) {
 			if ( current -> next == NULL ) {
                 
 				break;
+                
 			}
             
 			current = ( current ) -> next;
+            
 		}
+        
 	}
+    
 }
 
 /*
- * Last Modified by Mehak Bedi & Danielle on October 6th
+ * Updates the score by adding a new node to the list
+ *
+ * Last Modified by Mehak Bedi & Danielle on October 31th
  */
 
-void addNode ( User *head, char* name, int maxScore ) {
+void addNode ( User *head, char *name, int maxScore ) {
     
 	User *userPtr = NULL;
     
@@ -268,20 +301,24 @@ void addNode ( User *head, char* name, int maxScore ) {
 	if ( head == NULL ) {
         
 		head = userPtr;
+        
 	}
     
 	else {
         
 		getLastNode( head ) -> next = userPtr;
+        
 	}
     
 }
 
 /*
- * Last Modified by Mehak Bedi & Danielle on October 6th
+ * Updates the maxScore if the currentScore is greater
+ *
+ * Last Modified by Mehak Bedi & Danielle on October 31th
  */
 
-void updateNodeWithName (User *head, char* name, int currentScore) {
+void updateNodeWithName (User *head, char *name, int currentScore) {
     
 	if ( userIsInList( head, name ) == 1 ) {
         
@@ -295,5 +332,7 @@ void updateNodeWithName (User *head, char* name, int currentScore) {
         
 		userPtr -> totalGames += 1;
 		userPtr -> totalScore += currentScore;
+        
 	}
+    
 }
