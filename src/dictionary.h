@@ -10,7 +10,7 @@
 typedef struct node{
 
 	char *key;
-  struct node *next;
+	struct node *next;
 
 }dictionaryStruct;
 
