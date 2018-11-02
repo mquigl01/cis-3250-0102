@@ -1,3 +1,11 @@
+/*
+* Description: checks the words the user submits
+* Modification: added header comments
+* Author(s): Joshua Aidelman, Jaden Walt
+* Email(s): jaidelma@uoguelph.ca, waltj@uoguelph.ca
+* Last Modified: November 2, 1:40PM by Josh Aidelman
+*/
+
 #include <stdio.h>
 #include <string.h>
 #include "wordChecker.h"
