@@ -87,7 +87,7 @@ void rollNoShuffleDice( struct rolledDice *gameDice,
 
 			while( gameDice[shufflePostition].position == -1 ){
 
-				shufflePostition = ( int ) ( rand() % DICESIZE );
+				shufflePostition = ( int ) ( rand( ) % DICESIZE );
 
 			}
 
@@ -120,10 +120,10 @@ void rollNoShuffleDice( struct rolledDice *gameDice,
 		int boardSize = 4;
 		struct rolledDice adjustedDiceArray[boardSize * boardSize];
 
-		gameBoard[0] = malloc( sizeof ( struct rolledDice ) * boardSize);
-		gameBoard[1] = malloc(sizeof ( struct rolledDice ) * boardSize);
-		gameBoard[2] = malloc(sizeof ( struct rolledDice ) * boardSize);
-		gameBoard[3] = malloc(sizeof ( struct rolledDice ) * boardSize);
+		gameBoard[0] = malloc( sizeof ( struct rolledDice ) * boardSize );
+		gameBoard[1] = malloc( sizeof ( struct rolledDice ) * boardSize );
+		gameBoard[2] = malloc( sizeof ( struct rolledDice ) * boardSize );
+		gameBoard[3] = malloc( sizeof ( struct rolledDice ) * boardSize );
 
 		rollNoShuffleDice ( adjustedDiceArray, inputArrayOfDice );
 		shuffleRolledDicePositions (adjustedDiceArray );
@@ -132,7 +132,7 @@ void rollNoShuffleDice( struct rolledDice *gameDice,
 				horizontalPosition++ ){
 
 		   for( int verticalPosition = 0; verticalPosition < boardSize;
-					verticalPosition++){
+					verticalPosition++ ){
 
 					gameBoard[horizontalPosition][verticalPosition] =
 					adjustedDiceArray[horizontalPosition * boardSize + verticalPosition];
@@ -161,12 +161,12 @@ void rollNoShuffleDice( struct rolledDice *gameDice,
 
 			     if( verticalPosition != lastVerticalPosition ){
 
-				 	   	printf("%c \t", gameBoard[horizontalPosition][verticalPosition].character);
+				 	   	printf( "%c \t", gameBoard[horizontalPosition][verticalPosition].character );
 
 				   }
 			  	 else {
 
-				   		printf("%c \n", gameBoard[horizontalPosition][verticalPosition].character);
+				   		printf( "%c \n", gameBoard[horizontalPosition][verticalPosition].character );
 
 			  	 }
 
