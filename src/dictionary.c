@@ -16,8 +16,7 @@
 
 
 /*
-*	Function: unsigned formHashValue
-*	Description: Forms a hashvalue for string passed through function parameters
+*	Functio Description: Forms a hashvalue for string passed through function parameters
 *	which essentially produces a starting value
 *	Modifications: fixed and updated comments to follow coding conventions
 *	in the dictionary array
@@ -39,8 +38,7 @@ unsigned formHashValue( const char *string ){
 }
 
 /*
-*	Function: dictionaryStruct *lookupWord
-*	Description: Checks to see if the string that is passed through the Function
+*	Function Description: Checks to see if the string that is passed through the Function
 *	parameters is already in the dictionary. If it is: it returns the word, if not:
 *	it returns NULL
 *	Modifications: fixed and updated comments to follow coding conventions
@@ -66,8 +64,7 @@ dictionaryStruct *lookupWord( dictionaryStruct **dictionary, int hashSize, const
 }
 
 /*
-*	Function: dictionaryStruct *instertWord
-*	Description: Inserts and returns a new word into the dictionary if the word
+*	Function Description: Inserts and returns a new word into the dictionary if the word
 *	does not already exist when using the function lookUpWord
 *	Modifications: fixed and updated comments to follow coding conventions
 *	Last modified Nov 1st by MacKenzie Quigley
@@ -98,8 +95,7 @@ dictionaryStruct *insertWord( dictionaryStruct **dictionary, int hashSize,  cons
 }
 
 /*
-*	Function: void freeDictionary
-*	Description: Frees the temporary string in the dictionary by iterating through
+*	Function Description: Frees the temporary string in the dictionary by iterating through
 *	the dictionary until reaching the specified hash size and freeing any nodes
 *	that do not equal NULL
 *	Modifications: fixed and updated comments to follow coding conventions
@@ -131,8 +127,7 @@ void freeDictionary( dictionaryStruct **dictionary, int hashSize ){
 }
 
 /*
-*	Function: char *copyString
-*	Description: Makes and returns a duplicate of the string passed through
+*	Function Description: Makes and returns a duplicate of the string passed through
 *	the function parameters
 *	Modifications: fixed and updated comments to follow coding conventions
 *	Last modified Nov 1st by Ali El-Cheikh Ali
