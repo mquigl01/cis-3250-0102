@@ -3,15 +3,22 @@
 #include "wordChecker.h"
 #include <ctype.h>
 
-/* Revised by Josh Aidelman and Jaden Walt on October 4th at 3:59 PM */
+/*
+* Function Description: Gets the letter at position[i][j] on the gameBoard
+* Last Modification: Fixed [] brackets
+* Last Modified: November 2, 1:40PM by Josh Aidelman
+*/
 char getLetter( int i, int j, struct rolledDice **gameBoard ){
 
     return gameBoard[i][j].character;
 
 }
 
-/* Revised by Josh Aidelman and Jaden Walt on October 4th at 4:11 PM */
-/* Comments added by Josh Aidelman on October 17th at 11:51 AM */
+/*
+* Function Description: Makes sure all letters are touching, word is valid
+* Last Modification: Fixed [] brackets
+* Last Modified: November 2, 1:41PM by Josh Aidelman
+*/
 int abidesRules(  int i, int j, char *word, struct rolledDice** gameBoard, int subLen, int **visited  ){
 
     int adjCell;
@@ -62,8 +69,11 @@ int abidesRules(  int i, int j, char *word, struct rolledDice** gameBoard, int s
     return 0;
 }
 
-/* Revised by Josh Aidelman and Jaden Walt on October 5th at 2:53 PM */
-/* Comments added by Josh Aidelman on October 17th at 12:01 AM */
+/*
+* Function Description: Checks if the word is on the board and hasn't been visited yet
+* Last Modification: Fixed [] brackets
+* Last Modified: November 2, 1:41PM by Josh Aidelman
+*/
 int wordChecker( struct rolledDice **gameBoard, char *word ){
 
     int **visited;
@@ -121,14 +131,21 @@ int wordChecker( struct rolledDice **gameBoard, char *word ){
 
 }
 
-/* Revised by Josh Aidelman and Jaden Walt on October 4th at 4:18 PM */
+/*
+* Function Description: Tests getLetter function
+* Last Modification: Fixed [] brackets
+* Last Modified: November 2, 1:41PM by Josh Aidelman
+*/
 char testGetLetter ( int i, int j, char **boggle ){
     return boggle[i][j];
 }
 
 
-/* Revised by Josh Aidelman and Jaden Walt on October 4th at 4:22 PM */
-/* Comments added by Josh Aidelman on October 17th at 12:04 AM */
+/*
+* Function Description: Tests abidesRules function
+* Last Modification: Fixed [] brackets
+* Last Modified: November 2, 1:41PM by Josh Aidelman
+*/
 int testAbidesRules( int i, int j, char *word, char **gameBoard, int subLen, int **visited ){
 
     int adjCell;
@@ -200,8 +217,11 @@ int testAbidesRules( int i, int j, char *word, char **gameBoard, int subLen, int
     return 0;
 }
 
-/* Revised by Josh Aidelman and Jaden Walt on October 4th at 4:28 PM */
-/* Comments added by Josh Aidelman on October 17th at 12:08 AM */
+/*
+* Function Description: Tests wordChecker function
+* Last Modification: Fixed [] brackets
+* Last Modified: November 2, 1:41PM by Josh Aidelman
+*/
 int testWordChecker( char **boggle, char *word ){
 
     int **visited;
@@ -263,8 +283,11 @@ int testWordChecker( char **boggle, char *word ){
     return 0;
 }
 
-/* Revised by Josh Aidelman and Jaden Walt on October 4th at 4:20 PM */
-/* Comments added by Josh Aidelman on October 17th at 12:11 AM */
+/*
+* Function Description: Tests wordChecker function
+* Last Modification: Fixed [] brackets
+* Last Modified: November 2, 1:42PM by Josh Aidelman
+*/
 int hcWordChecker( char boggle[][4], char *word ){
 
     int **visited;
@@ -325,8 +348,11 @@ int hcWordChecker( char boggle[][4], char *word ){
 
 }
 
-/* Revised by Josh Aidelman and Jaden Walt on October 4th at 4:16 PM */
-/* Comments added by Josh Aidelman on October 17th at 12:15 AM */
+/*
+* Function Description: Tests abidesRules function
+* Last Modification: Fixed [] brackets
+* Last Modified: November 2, 1:42PM by Josh Aidelman
+*/
 int hcAbidesRules( int i, int j, char *word, char boggle[][4], int subLen, int **visited ){
 
     int adjCell;
@@ -393,7 +419,11 @@ int hcAbidesRules( int i, int j, char *word, char boggle[][4], int subLen, int *
     return 0;
 }
 
-/* Revised by Josh Aidelman and Jaden Walt on October 4th at 4:08 PM */
+/*
+* Function Description: Tests getLetter function
+* Last Modification: Fixed [] brackets
+* Last Modified: November 2, 1:42PM by Josh Aidelman
+*/
 char hcGetLetter(  int i, int j, char boggle[][4]  ){
 
     return boggle[i][j];
