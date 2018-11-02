@@ -6,7 +6,7 @@
 /* Revised by Josh Aidelman and Jaden Walt on October 4th at 3:59 PM */
 char getLetter( int i, int j, struct rolledDice **gameBoard ){
 
-    return gameBoard[ i ][ j ].character;
+    return gameBoard[i][j].character;
 
 }
 
@@ -22,8 +22,8 @@ int abidesRules(  int i, int j, char *word, struct rolledDice** gameBoard, int s
 
     // To store what letters are touching
     // In the order: right digUpRight, up, digUpLeft, left, digDownLeft, down, digDownRight
-    int allX[ ] = { 0, -1, -1, -1, 0, 1, 1, 1 };
-    int allY[ ] = { 1, 1, 0, -1, -1, -1, 0, 1 };
+    int allX[] = { 0, -1, -1, -1, 0, 1, 1, 1 };
+    int allY[] = { 1, 1, 0, -1, -1, -1, 0, 1 };
 
     //Checks the word to make sure it's long enough
     if(  subLen == (  strlen(  word  ) -1  )  ){
@@ -31,20 +31,20 @@ int abidesRules(  int i, int j, char *word, struct rolledDice** gameBoard, int s
         return 1;
     }
 
-    findLetter = word[ subLen + 1 ];
+    findLetter = word[subLen + 1];
 
 
     //Checks to make sure all letters are touching and word is valid to play
     for( adjCell = 0; adjCell < 8; adjCell++ ){
 
-        newX = i + allX[ adjCell ];
-        newY = j + allY[ adjCell ];
+        newX = i + allX[adjCell];
+        newY = j + allY[adjCell];
 
         //Makes sure the letter is there and hasn't been visited before
         if( ( newX >= 0 ) && ( newX < 4 ) && ( newY >=0 ) && ( newY < 4 )
-           && toupper( findLetter ) == getLetter( newX, newY, gameBoard ) && !visited[ newX ][ newY ] ){
+           && toupper( findLetter ) == getLetter( newX, newY, gameBoard ) && !visited[newX][newY] ){
 
-            visited[ newX ][ newY ] = 1;
+            visited[newX][newY] = 1;
             ++subLen;
             result = abidesRules( newX, newY, word, gameBoard, subLen, visited );
 
@@ -71,10 +71,10 @@ int wordChecker( struct rolledDice **gameBoard, char *word ){
     //Stores board position in which letters have been visited
     visited = malloc( sizeof( int *  ) * 4 );
 
-    visited[ 0 ] = malloc( sizeof( int ) * 4 );
-    visited[ 1 ] = malloc( sizeof( int ) * 4 );
-    visited[ 2 ] = malloc( sizeof( int ) * 4 );
-    visited[ 3 ] = malloc( sizeof( int ) * 4 );
+    visited[0] = malloc( sizeof( int ) * 4 );
+    visited[1] = malloc( sizeof( int ) * 4 );
+    visited[2] = malloc( sizeof( int ) * 4 );
+    visited[3] = malloc( sizeof( int ) * 4 );
 
     for (int m = 0; m < 4; m++ ){
 
@@ -82,10 +82,10 @@ int wordChecker( struct rolledDice **gameBoard, char *word ){
 
             if ( m == 0 && n == 0 ){
 
-                visited[ m ][ n ] = 1;
+                visited[m][n] = 1;
             }
             else{
-                visited[ m ][ n ] = 0;
+                visited[m][n] = 0;
             }
 
         }
@@ -100,10 +100,10 @@ int wordChecker( struct rolledDice **gameBoard, char *word ){
             //If it's valid, free visited
             if ( abidesRules( row, col, word, gameBoard, 0, visited ) ){
 
-                free( visited[ 0 ] );
-                free( visited[ 1 ] );
-                free( visited[ 2 ] );
-                free( visited[ 3 ] );
+                free( visited[0] );
+                free( visited[1] );
+                free( visited[2] );
+                free( visited[3] );
                 return 1;
             }
 
@@ -112,10 +112,10 @@ int wordChecker( struct rolledDice **gameBoard, char *word ){
     }
 
     //After the loop free everything
-    free( visited[ 0 ] );
-    free( visited[ 1 ] );
-    free( visited[ 2 ] );
-    free( visited[ 3 ] );
+    free( visited[0] );
+    free( visited[1] );
+    free( visited[2] );
+    free( visited[3] );
 
     return 0;
 
@@ -123,7 +123,7 @@ int wordChecker( struct rolledDice **gameBoard, char *word ){
 
 /* Revised by Josh Aidelman and Jaden Walt on October 4th at 4:18 PM */
 char testGetLetter ( int i, int j, char **boggle ){
-    return boggle[ i ][ j ];
+    return boggle[i][j];
 }
 
 
@@ -135,12 +135,12 @@ int testAbidesRules( int i, int j, char *word, char **gameBoard, int subLen, int
     int result;
     int newX;
     int newY;
-    int allX[ ] = { 0, -1, -1, -1, 0, 1, 1, 1 };
-    int allY[ ] = { 1, 1, 0, -1, -1, -1, 0, 1 };
+    int allX[] = { 0, -1, -1, -1, 0, 1, 1, 1 };
+    int allY[] = { 1, 1, 0, -1, -1, -1, 0, 1 };
     char findLetter;
 
     // use subLen as index to see what letter to find
-    char currentLetter = word[ subLen ];
+    char currentLetter = word[subLen];
 
     //Makes sure it's long enough
     if ( subLen == ( strlen ( word ) - 1 ) ){
@@ -150,9 +150,9 @@ int testAbidesRules( int i, int j, char *word, char **gameBoard, int subLen, int
     }
 
     //Testing 'Q'
-    if ( toupper( currentLetter ) == 'Q' && toupper( word[ subLen + 2 ] ) == testGetLetter( i,j,gameBoard ) ){
+    if ( toupper( currentLetter ) == 'Q' && toupper( word[subLen + 2] ) == testGetLetter( i,j,gameBoard ) ){
 
-        findLetter = word[ subLen + 3 ];
+        findLetter = word[subLen + 3];
         subLen++;
         subLen++;
         currentLetter = word[subLen];
@@ -160,7 +160,7 @@ int testAbidesRules( int i, int j, char *word, char **gameBoard, int subLen, int
     }
     else{
 
-        findLetter = word[ subLen + 1 ];
+        findLetter = word[subLen + 1];
 
     }
 
@@ -169,15 +169,15 @@ int testAbidesRules( int i, int j, char *word, char **gameBoard, int subLen, int
     //Checks to make sure all letters are touching and word is valid to play
     for( adjCell = 0; adjCell < 8; adjCell++ ){
 
-        newX = i + allX[ adjCell ];
-        newY = j + allY[ adjCell ];
+        newX = i + allX[adjCell];
+        newY = j + allY[adjCell];
 
         //Makes sure the letter is there and hasn't been visited before
         if( ( newX >= 0 ) && ( newX < 4 ) && ( newY >=0 ) && ( newY < 4 )
            && toupper( findLetter ) == testGetLetter( newX, newY, gameBoard )
-           && !visited[ newX ][ newY ] ){
+           && !visited[newX][newY] ){
 
-            visited[ newX ][ newY ] = 1;
+            visited[newX][newY] = 1;
             ++subLen;
             result = testAbidesRules( newX, newY, word, gameBoard, subLen, visited );
 
@@ -208,10 +208,10 @@ int testWordChecker( char **boggle, char *word ){
 
     //Stores which letters have been visited
     visited = malloc( sizeof( int *  ) * 4 );
-    visited[ 0 ] = malloc( sizeof( int ) * 4 );
-    visited[ 1 ] = malloc( sizeof( int ) * 4 );
-    visited[ 2 ] = malloc( sizeof( int ) * 4 );
-    visited[ 3 ] = malloc( sizeof( int ) * 4 );
+    visited[0] = malloc( sizeof( int ) * 4 );
+    visited[1] = malloc( sizeof( int ) * 4 );
+    visited[2] = malloc( sizeof( int ) * 4 );
+    visited[3] = malloc( sizeof( int ) * 4 );
 
     for (int m = 0; m < 4; m++ ){
 
@@ -219,13 +219,13 @@ int testWordChecker( char **boggle, char *word ){
 
             if( m == 0 && n == 0 ){
 
-                visited[ m ][ n ] = 1;
+                visited[m][n] = 1;
 
             }
 
             else{
 
-                visited[ m ][ n ] = 0;
+                visited[m][n] = 0;
 
             }
 
@@ -241,10 +241,10 @@ int testWordChecker( char **boggle, char *word ){
             if( testAbidesRules( row, col, word, boggle, 0, visited ) ){
 
                 //If it's true free visited
-                free( visited[ 0 ] );
-                free( visited[ 1 ] );
-                free( visited[ 2 ] );
-                free( visited[ 3 ] );
+                free( visited[0] );
+                free( visited[1] );
+                free( visited[2] );
+                free( visited[3] );
 
                 return 1;
 
@@ -255,26 +255,26 @@ int testWordChecker( char **boggle, char *word ){
     }
 
     //Free visited
-    free( visited[ 0 ] );
-    free( visited[ 1 ] );
-    free( visited[ 2 ] );
-    free( visited[ 3 ] );
+    free( visited[0] );
+    free( visited[1] );
+    free( visited[2] );
+    free( visited[3] );
 
     return 0;
 }
 
 /* Revised by Josh Aidelman and Jaden Walt on October 4th at 4:20 PM */
 /* Comments added by Josh Aidelman on October 17th at 12:11 AM */
-int hcWordChecker( char boggle[  ] [ 4 ], char *word ){
+int hcWordChecker( char boggle[][4], char *word ){
 
     int **visited;
 
     //Mallocs for visited to store board position
     visited = malloc( sizeof( int *  ) * 4 );
-    visited[ 0 ] = malloc( sizeof( int ) * 4 );
-    visited[ 1 ] = malloc( sizeof( int ) * 4 );
-    visited[ 2 ] = malloc( sizeof( int ) * 4 );
-    visited[ 3 ] = malloc( sizeof( int ) * 4 );
+    visited[0] = malloc( sizeof( int ) * 4 );
+    visited[1] = malloc( sizeof( int ) * 4 );
+    visited[2] = malloc( sizeof( int ) * 4 );
+    visited[3] = malloc( sizeof( int ) * 4 );
 
     for (int m = 0; m < 4; m++ ){
 
@@ -282,13 +282,13 @@ int hcWordChecker( char boggle[  ] [ 4 ], char *word ){
 
             if ( m == 0 && n == 0 ){
 
-                visited[ m ][ n ] = 1;
+                visited[m][n] = 1;
 
             }
 
             else{
 
-                visited[ m ][ n ] = 0;
+                visited[m][n] = 0;
 
             }
 
@@ -303,10 +303,10 @@ int hcWordChecker( char boggle[  ] [ 4 ], char *word ){
             if ( hcAbidesRules( row, col, word, boggle, 0, visited ) ){
 
                 //If valid, free
-                free( visited[ 0 ] );
-                free( visited[ 1 ] );
-                free( visited[ 2 ] );
-                free( visited[ 3 ] );
+                free( visited[0] );
+                free( visited[1] );
+                free( visited[2] );
+                free( visited[3] );
 
                 return 1;
             }
@@ -316,10 +316,10 @@ int hcWordChecker( char boggle[  ] [ 4 ], char *word ){
     }
 
     //Free visited
-    free( visited[ 0 ] );
-    free( visited[ 1 ] );
-    free( visited[ 2 ] );
-    free( visited[ 3 ] );
+    free( visited[0] );
+    free( visited[1] );
+    free( visited[2] );
+    free( visited[3] );
 
     return 0;
 
@@ -327,15 +327,15 @@ int hcWordChecker( char boggle[  ] [ 4 ], char *word ){
 
 /* Revised by Josh Aidelman and Jaden Walt on October 4th at 4:16 PM */
 /* Comments added by Josh Aidelman on October 17th at 12:15 AM */
-int hcAbidesRules( int i, int j, char *word, char boggle[  ][ 4 ], int subLen, int **visited ){
+int hcAbidesRules( int i, int j, char *word, char boggle[][4], int subLen, int **visited ){
 
     int adjCell;
     int newX;
     int newY;
-    int allX[  ] = {0, -1, -1, -1, 0, 1, 1, 1};
-    int allY[  ] = {1, 1, 0, -1, -1, -1, 0, 1};
+    int allX[] = {0, -1, -1, -1, 0, 1, 1, 1};
+    int allY[] = {1, 1, 0, -1, -1, -1, 0, 1};
     int result = 0;
-    char currentLetter = word[ subLen ];
+    char currentLetter = word[subLen];
     char findLetter;
 
     //Checks word length
@@ -346,32 +346,32 @@ int hcAbidesRules( int i, int j, char *word, char boggle[  ][ 4 ], int subLen, i
     }
 
     //Tests with letter 'Q'
-    if ( toupper( currentLetter ) == 'Q' && toupper( word[ subLen + 2 ] ) == hcGetLetter( i,j,boggle ) ){
+    if ( toupper( currentLetter ) == 'Q' && toupper( word[subLen + 2] ) == hcGetLetter( i,j,boggle ) ){
 
-        findLetter = word[ subLen + 3 ];
+        findLetter = word[subLen + 3];
         subLen++;
         subLen++;
-        currentLetter = word[ subLen ];
+        currentLetter = word[subLen];
 
     }
 
     else{
 
-        findLetter = word[ subLen + 1 ];
+        findLetter = word[subLen + 1];
 
     }
 
     for ( adjCell = 0; adjCell < 8; adjCell++ ){
 
-        newX = i + allX[ adjCell ];
-        newY = j + allY[ adjCell ];
+        newX = i + allX[adjCell];
+        newY = j + allY[adjCell];
 
         //Checks to make sure letter is valid and hasn't been visited
         if ( ( newX >= 0 ) && ( newX < 4 ) && ( newY >=0 ) && ( newY < 4 )
            && toupper( findLetter ) == hcGetLetter( newX, newY, boggle )
-           && !visited[  newX  ][  newY  ] ){
+           && !visited[newX][newY] ){
 
-            visited[  newX  ][  newY  ] = 1;
+            visited[newX][newY] = 1;
             ++subLen;
             result = hcAbidesRules(  newX, newY, word, boggle, subLen, visited  );
 
@@ -394,8 +394,8 @@ int hcAbidesRules( int i, int j, char *word, char boggle[  ][ 4 ], int subLen, i
 }
 
 /* Revised by Josh Aidelman and Jaden Walt on October 4th at 4:08 PM */
-char hcGetLetter(  int i, int j, char boggle[   ] [  4  ]  ){
+char hcGetLetter(  int i, int j, char boggle[][4]  ){
 
-    return boggle[ i ][ j ];
+    return boggle[i][j];
 
 }
