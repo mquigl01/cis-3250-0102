@@ -55,8 +55,8 @@ void initializePresetDice(struct presetDice *inputArrayOfDice) {
 *	Modifications: fixed spacing and condensed lines to 80 characters
 *	Last modified Nov 2st by Mackenzie Quigley
 */
-void rollNoShuffleDice ( struct rolledDice *gameDice,
-	struct presetDice *inputArrayOfDice ) {
+void rollNoShuffleDice( struct rolledDice *gameDice,
+	struct presetDice *inputArrayOfDice ){
 		srand( time( NULL ) );
 
 		for( int gameDicePosition = 0; gameDicePosition < DICESIZE;
@@ -76,7 +76,7 @@ void rollNoShuffleDice ( struct rolledDice *gameDice,
 	*	Modifications: fixed spacing and condensed lines to 80 characters
 	*	Last modified Nov 2st by Mackenzie Quigley
 	*/
-	void shuffleRolledDicePositions( struct rolledDice* gameDice ) {
+	void shuffleRolledDicePositions( struct rolledDice* gameDice ){
 		struct rolledDice newGameDice[DICESIZE];
 		int shufflePostition = 0;
 
@@ -149,7 +149,7 @@ void rollNoShuffleDice ( struct rolledDice *gameDice,
 	*	Modifications: fixed spacing and condensed lines to 80 characters
 	*	Last modified Nov 2st by Mackenzie Quigley
 	*/
-	void printGameBoard ( struct rolledDice **gameBoard ) {
+	void printGameBoard( struct rolledDice **gameBoard ){
 		int boardSize = 4;
 		int lastVerticalPosition = 3;
 
@@ -183,7 +183,7 @@ void rollNoShuffleDice ( struct rolledDice *gameDice,
 	*	Modifications: fixed spacing and condensed lines to 80 characters
 	*	Last modified Nov 2st by Mackenzie Quigley
 	*/
-	void printBoard ( char boggle[][4] ) {
+	void printBoard( char boggle[][4] ){
 
 		int boardSize = 4;
 		int lastVerticalPosition = 3;
@@ -219,7 +219,7 @@ void rollNoShuffleDice ( struct rolledDice *gameDice,
 	*	Modifications: fixed spacing and condensed lines to 80 characters
 	*	Last modified Nov 2st by Mackenzie Quigley
 	*/
-	void convertToBoard ( char *letters, char ***board ) {
+	void convertToBoard( char *letters, char ***board ){
 
 		int lettersIndex = 0;
 		int boardSize = 4;
