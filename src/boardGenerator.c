@@ -1,11 +1,10 @@
 /*
-*	Description: This programs code is to generate the board for the game.
-* This is used to make the dice, roll the dice, generate the board, and
+* Program Description: This programs code is to generate the board for the
+* game. This is used to make the dice, roll the dice, generate the board, and
 * converts the board from a string to a 2D array.
-*	@authors Mackenzie Quigley, Ali El-Cheikh Ali
-*	@version 0.2
-*	Modifications: fixed spacing and condensed lines to 80 characters
-*	Last modified Nov 2st by Mackenzie Quigley
+* Author(s): Mackenzie Quigley, Ali El-Cheikh Ali
+* Email(s): mquigl01@uoguelph.ca, aelcheik@uoguelph.ca
+* Last Modified: Last modified Nov 2st by Mackenzie Quigley
 */
 
 #include "boardGenerator.h"
@@ -14,8 +13,8 @@
 
 /*
 *	Function: void initializePresetDice
-*	Description: Initializes the dice in the list of pre-set dice.
-* Call once at program start.
+*	Description: Initializes the dice in the list of pre-set dice. Call once
+* at program start.
 *	Modifications: fixed spacing and condensed lines to 80 characters
 *	Last modified Nov 2st by Mackenzie Quigley
 */

@@ -1,9 +1,8 @@
 /*
-*	Description: The headerfile for boardGenerator.c
-*	@authors Mackenzie Quigley, Ali El-Cheikh Ali
-*	@version 0.2
-*	Modifications: fixed spacing and condensed lines to 80 characters
-*	Last modified Nov 2st by Mackenzie Quigley
+* Program Description: the headerfile for boardGenerator.c
+* Author(s): Mackenzie Quigley, Ali El-Cheikh Ali
+* Email(s): mquigl01@uoguelph.ca, aelcheik@uoguelph.ca
+* Last Modified: Last modified Nov 2st by Mackenzie Quigley
 */
 
 #ifndef BOARD_GEN
@@ -20,7 +19,6 @@ typedef struct presetDice {
 	int position;
 
 } PresetDice;
-
 
 typedef struct rolledDice {
 
