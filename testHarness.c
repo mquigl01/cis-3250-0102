@@ -6,20 +6,18 @@
 void incrementTotalScore ( int *userScore, char *word );
 void testIncrementTotalScore( int *userScore, int expected, char *word );
 char *convertToUpper ( char **upper);
-char *testconvertToUpper ( char **upper, char expected );
+void testconvertToUpper ( char **upper, char *expected);
 
 int main(){
 
   	int userScore = 0;
   	char word[10];
-	char **upper[10];
-	
+	char expected[10];
+	char *upper = malloc(sizeof(char) * 10);
 
-	
-  	strcpy(**upper, "hello");
-	*testconvertToUpper(upper, 1);
-	strcpy(**upper, "world");
-	*testconvertToUpper(upper, 2);
+	strcpy(upper, "hello");
+	strcpy(expected, "HELLO");
+	testconvertToUpper(&upper, expected);
 
   	//This is how you run a test
   	strcpy(word, "2 ");
@@ -75,15 +73,15 @@ void incrementTotalScore ( int *userScore, char *word ){
 	}
 }
 
-char *testconvertToUpper ( char **upper, char expected ){
+void testconvertToUpper ( char **upper, char *expected){
 
-	convertToUpper(upper);
+	*upper = convertToUpper(upper);
 	
-	if (**upper == expected){
-		printf("SUCCES!\n\n");
+	if (strcmp(*upper, expected) == 0){
+		printf("SUCCESS!\n\n");
 	}
 	else{
-		printf("Expected: %d\nResult: %c\n\n", expected, **upper);
+		printf("Expected: %s\nResult: %s\n\n", expected, *upper);
 	}
 
 }
